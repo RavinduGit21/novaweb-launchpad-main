@@ -40,7 +40,7 @@ function AboutPage() {
             </p>
             <p className="mt-4 text-muted-foreground">
               From local startups to growing brands, we help our clients move faster — combining
-              modern web technology with smart automation that saves time and grows revenue.
+              modern web technology with smart automations that saves time and grows revenue.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-4">
