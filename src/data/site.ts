@@ -73,6 +73,7 @@ export const PROJECTS: Project[] = [
   { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png" },
   { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png" },
   { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png" },
+  { title: "Maison Aurelia Luxury Gems", category: "High-End E-commerce", description: "A premium digital boutique for rare gemstones and handcrafted jewelry, featuring elegant gold aesthetics and world-class luxury UX.", gradient: "from-amber-200 to-yellow-600", image: "/portfolio/aurelia.png" },
 ];
 
 export type PricingTier = {
