@@ -29,10 +29,13 @@ fs.renameSync(path.join(outputDir, 'functions/index.func/server.js'), serverPath
 
 // Bundle all dependencies into server.mjs so Vercel doesn't need to find node_modules
 console.log('📦  Bundling server engine with standalone dependencies...');
-execSync(`npx esbuild ${serverPath} --bundle --minify --platform=node --target=node20 --format=esm --outfile=${serverPath} --allow-overwrite --external:./assets/*`, { stdio: 'inherit' });
+const banner = "import { createRequire } from 'module'; const require = createRequire(import.meta.url);";
+execSync(`npx esbuild ${serverPath} --bundle --minify --platform=node --target=node20 --format=esm --outfile=${serverPath} --allow-overwrite --external:./assets/* --banner:js="${banner}"`, { stdio: 'inherit' });
 
 const handlerPath = path.join(outputDir, 'functions/index.func/index.mjs');
 const handlerContent = `
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 import server from './server.mjs';
 
 export default async function (req, res) {
