@@ -21,8 +21,9 @@ fs.cpSync('dist/client', path.join(outputDir, 'static'), { recursive: true });
 
 // 4. Create the Serverless Function
 console.log('🧠  Configuring SSR Bridge...');
-fs.copyFileSync('dist/server/server.js', path.join(outputDir, 'functions/index.func/server.js'));
+fs.cpSync('dist/server', path.join(outputDir, 'functions/index.func'), { recursive: true });
 
+const handlerPath = path.join(outputDir, 'functions/index.func/index.js');
 const handlerContent = `
 import server from './server.js';
 
@@ -32,6 +33,7 @@ export default async function (req, res) {
     const host = req.headers['host'];
     const url = new URL(req.url, \`\${protocol}://\${host}\`);
     
+    // Convert Node.js request to Web Request
     const request = new Request(url.href, {
       method: req.method,
       headers: req.headers,
@@ -55,8 +57,7 @@ export default async function (req, res) {
   }
 }
 `;
-
-fs.writeFileSync(path.join(outputDir, 'functions/index.func/index.js'), handlerContent);
+fs.writeFileSync(handlerPath, handlerContent);
 
 // 5. Write Vercel Configurations
 fs.writeFileSync(path.join(outputDir, 'functions/index.func/.vc-config.json'), JSON.stringify({
