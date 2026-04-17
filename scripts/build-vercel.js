@@ -24,7 +24,12 @@ console.log('🧠  Configuring SSR Bridge...');
 fs.cpSync('dist/server', path.join(outputDir, 'functions/index.func'), { recursive: true });
 
 // Rename server.js to server.mjs inside the function folder
-fs.renameSync(path.join(outputDir, 'functions/index.func/server.js'), path.join(outputDir, 'functions/index.func/server.mjs'));
+const serverPath = path.join(outputDir, 'functions/index.func/server.mjs');
+fs.renameSync(path.join(outputDir, 'functions/index.func/server.js'), serverPath);
+
+// Bundle all dependencies into server.mjs so Vercel doesn't need to find node_modules
+console.log('📦  Bundling server engine with standalone dependencies...');
+execSync(`npx esbuild ${serverPath} --bundle --minify --platform=node --target=node20 --format=esm --outfile=${serverPath} --allow-overwrite --external:./assets/*`, { stdio: 'inherit' });
 
 const handlerPath = path.join(outputDir, 'functions/index.func/index.mjs');
 const handlerContent = `
