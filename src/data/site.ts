@@ -87,7 +87,7 @@ export type PricingTier = {
 export const PRICING: PricingTier[] = [
   {
     name: "Starter",
-    price: "Rs. 35,000",
+    price: "Rs. 20,000",
     description: "Perfect for small businesses and personal brands just getting started online.",
     features: [
       "Up to 5 pages",

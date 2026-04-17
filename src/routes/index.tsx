@@ -1,6 +1,6 @@
 import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check } from "lucide-react";
+import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check, Users } from "lucide-react";
 import { AnimatedBlobs } from "@/components/AnimatedBlobs";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
@@ -93,12 +93,12 @@ function HomePage() {
             <Sparkles className="h-3.5 w-3.5" /> Premium Web Engineering Studio
           </span>
           <h1 className="mt-6 text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Websites That Bring You
+            Modern, Fast & 
             <br />
-            <span className="text-gradient drop-shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.3)]">More Customers</span>
+            <span className="text-gradient drop-shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.3)]">High-Converting Websites</span>
           </h1>
           <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            We engineer high-performance digital experiences designed to turn visitors into loyal customers and scale your business with precision.
+            Engineered for Sri Lankan businesses. Starting from just Rs. 20,000. We build digital platforms designed to scale your business with precision.
           </p>
 
           <div className="mt-10 flex flex-col items-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
@@ -107,26 +107,42 @@ function HomePage() {
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03]"
               >
-                Get Free Consultation <ArrowRight className="h-4 w-4" />
+                Get Your Website Now <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                to="/portfolio"
+              <a
+                href="https://wa.me/94000000000"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-sm font-semibold hover:text-accent"
               >
-                View Portfolio
-              </Link>
+                <MessageCircle className="h-4 w-4" /> WhatsApp Us
+              </a>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground/80">
-              <div className="flex items-center gap-2">
-                <span className="text-accent text-lg">★</span> 30+ Happy clients
+            {/* Trust Badges — Premium Social Proof Strip */}
+            <div className="mt-10 inline-flex items-center gap-8 rounded-2xl border border-white/5 bg-white/[0.02] px-8 py-4 backdrop-blur-md">
+              <div className="flex items-center gap-3">
+                <Users className="h-4 w-4 text-accent drop-shadow-glow" />
+                <div className="flex flex-col items-start leading-none">
+                  <span className="text-sm font-bold text-white leading-none">30+</span>
+                  <span className="text-[9px] uppercase tracking-wider text-white/40 mt-1 font-semibold">Happy Clients</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-accent text-lg">★</span> 50+ Projects delivered
+              <div className="h-8 w-px bg-white/10" />
+              <div className="flex items-center gap-3">
+                <Target className="h-4 w-4 text-accent drop-shadow-glow" />
+                <div className="flex flex-col items-start leading-none">
+                  <span className="text-sm font-bold text-white leading-none">50+</span>
+                  <span className="text-[9px] uppercase tracking-wider text-white/40 mt-1 font-semibold">Projects Done</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-accent text-lg">★</span> 5★ Average rating
+              <div className="h-8 w-px bg-white/10" />
+              <div className="flex items-center gap-3">
+                <Star className="h-4 w-4 text-accent drop-shadow-glow" />
+                <div className="flex flex-col items-start leading-none">
+                  <span className="text-sm font-bold text-white leading-none">5.0</span>
+                  <span className="text-[9px] uppercase tracking-wider text-white/40 mt-1 font-semibold">Average Rating</span>
+                </div>
               </div>
             </div>
           </div>
@@ -202,81 +218,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PROCESS SECTION — Connected Timeline */}
-      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent pointer-events-none" />
-        <div className="mx-auto max-w-6xl">
-          <SectionHeading
-            eyebrow="Our Methodology"
-            title={<>How we <span className="text-gradient">deliver results</span></>}
-            subtitle="A battle-tested 3-phase process that takes your project from idea to a revenue-generating machine."
-          />
 
-          <div className="mt-20 grid gap-0 md:grid-cols-3 relative">
-            {/* Connecting line — sits at exact circle center (h-20 = 80px, center = 40px = top-10) */}
-            <div className="hidden md:block absolute top-10 left-[calc(50%/3)] right-[calc(50%/3)] h-px">
-              <div className="w-full h-full bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-            </div>
-
-            {[
-              {
-                step: 1,
-                title: "Blueprint & Discovery",
-                tag: "Week 1",
-                desc: "We deep-dive into your business, competitors, and goals. You receive a full technical roadmap and wireframes before any code is written.",
-                icon: Target,
-                details: ["Business audit", "Competitor analysis", "Technical architecture", "Wireframe delivery"],
-              },
-              {
-                step: 2,
-                title: "High-Performance Build",
-                tag: "Weeks 2–4",
-                desc: "Our engineers hand-craft every pixel using cutting-edge frameworks. Daily updates keep you in the loop — no surprises.",
-                icon: Zap,
-                details: ["Pixel-perfect UI", "Sub-2s load times", "Mobile-first responsive", "Daily progress updates"],
-              },
-              {
-                step: 3,
-                title: "Launch & Growth",
-                tag: "Ongoing",
-                desc: "Launch day is just the beginning. We monitor performance, optimize SEO, and iterate on conversion paths to keep growing your revenue.",
-                icon: Workflow,
-                details: ["SEO optimization", "Conversion tracking", "Performance monitoring", "Ongoing support"],
-              },
-            ].map((p) => (
-              <div key={p.step} className="relative group flex flex-col items-center text-center px-6 pb-10">
-                {/* Glowing circle */}
-                <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-2 border-accent/40 bg-[oklch(0.16_0.04_265)] shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.15)] group-hover:border-accent group-hover:shadow-[0_0_50px_oklch(0.84_0.17_215_/_0.35)] transition-all duration-500 shrink-0">
-                  <div className="absolute inset-2 rounded-full bg-gradient-brand opacity-15 group-hover:opacity-35 transition-opacity" />
-                  <p.icon className="h-7 w-7 text-white relative z-10" />
-                  <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-brand text-[10px] font-black text-white flex items-center justify-center shadow-glow">
-                    {p.step}
-                  </span>
-                </div>
-
-                {/* Tag */}
-                <span className="mt-6 text-[10px] uppercase tracking-widest font-bold text-accent rounded-full glass px-3 py-1">
-                  {p.tag}
-                </span>
-
-                {/* Text */}
-                <h3 className="mt-4 text-xl font-bold text-white">{p.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">{p.desc}</p>
-
-                {/* Detail bullets */}
-                <ul className="mt-5 space-y-2">
-                  {p.details.map((d) => (
-                    <li key={d} className="flex items-center justify-center gap-2 text-sm text-white/60">
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* SERVICES — Featured Split Layout */}
