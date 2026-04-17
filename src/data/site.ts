@@ -47,7 +47,8 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
-  { title: "Starline SaaS Dashboard", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png" },
+  { title: "EduWave Learning Portal", category: "EdTech & AI", description: "A next-generation educational platform featuring AI-personalized learning paths, integrated progress tracking, and professional Sinhala localization.", gradient: "from-blue-600 to-violet-600", image: "/portfolio/eduwave.png" },
+  { title: "Project Management System", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png" },
   { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png" },
   { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png" },
   { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png" },
