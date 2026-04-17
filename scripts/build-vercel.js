@@ -45,9 +45,20 @@ export default async function (req, res) {
     const url = new URL(req.url, \`\${protocol}://\${host}\`);
     
     // Convert Node.js request to Web Request
+    const requestHeaders = new Headers();
+    Object.entries(req.headers).forEach(([key, value]) => {
+      if (value) {
+        if (Array.isArray(value)) {
+          value.forEach(v => requestHeaders.append(key, v));
+        } else {
+          requestHeaders.set(key, value);
+        }
+      }
+    });
+
     const request = new Request(url.href, {
       method: req.method,
-      headers: req.headers,
+      headers: requestHeaders,
       body: ['GET', 'HEAD'].includes(req.method) ? undefined : req,
       duplex: 'half'
     });
@@ -63,8 +74,12 @@ export default async function (req, res) {
     res.send(Buffer.from(body));
     
   } catch (error) {
-    console.error('SSR Entry Error:', error);
-    res.status(500).send('Internal Server Error');
+    console.error('CRITICAL SSR ERROR:', error);
+    res.status(500).json({ 
+      error: 'Internal Server Error',
+      message: error.message,
+      stack: error.stack 
+    });
   }
 }
 `;
