@@ -177,15 +177,3 @@
 @utility transform-3d {
   transform-style: preserve-3d;
 }
-
-@utility rotate-x-2 {
-  transform: rotateX(2deg);
-}
-
-@utility rotate-y-[-10deg] {
-  transform: rotateY(-10deg);
-}
-
-@utility rotate-x-[5deg] {
-  transform: rotateX(5deg);
-}
