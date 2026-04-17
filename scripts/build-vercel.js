@@ -74,11 +74,13 @@ export default async function (req, res) {
     });
     
     const body = await response.arrayBuffer();
+    res.setHeader('x-novaweb-version', '1.0.1');
     res.send(Buffer.from(body));
     
   } catch (error) {
-    console.error('CRITICAL SSR ERROR:', error);
+    console.error('CRITICAL SSR ERROR (v1.0.1):', error);
     res.status(500).json({ 
+      version: '1.0.1',
       error: 'Internal Server Error',
       message: error.message,
       stack: error.stack 
