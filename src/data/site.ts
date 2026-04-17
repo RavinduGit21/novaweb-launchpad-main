@@ -1,0 +1,58 @@
+import { Globe, ShoppingCart, MessageSquare, Workflow, Zap, Smartphone, Search, Shield, type LucideIcon } from "lucide-react";
+
+export type Service = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
+export const SERVICES: Service[] = [
+  {
+    icon: Globe,
+    title: "Website Development",
+    description: "Custom, lightning-fast websites built with modern frameworks and a polished design system.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "E-commerce Solutions",
+    description: "Conversion-focused online stores with secure checkout, payments, and inventory built-in.",
+  },
+  {
+    icon: MessageSquare,
+    title: "WhatsApp Automation",
+    description: "Automate customer support, orders, and follow-ups directly through WhatsApp Business.",
+  },
+  {
+    icon: Workflow,
+    title: "Business Automation",
+    description: "Connect your tools, eliminate repetitive work, and scale operations with smart workflows.",
+  },
+];
+
+export type Feature = { icon: LucideIcon; title: string; description: string };
+
+export const FEATURES: Feature[] = [
+  { icon: Zap, title: "Fast Performance", description: "Websites that load under 2 seconds for maximum retention." },
+  { icon: Smartphone, title: "Built for Leads", description: "Design engineered to turn visitors into active inquiries." },
+  { icon: Search, title: "Smart Automation", description: "Automated booking & lead routing included (your advantage)." },
+  { icon: Shield, title: "Reliable & Secure", description: "Enterprise-grade security with 99.9% uptime guaranteed." },
+];
+
+export type Project = {
+  title: string;
+  category: string;
+  gradient: string;
+  description: string;
+  image: string;
+};
+
+export const PROJECTS: Project[] = [
+  { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png" },
+  { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png" },
+  { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png" },
+  { title: "Amaya Exports", category: "B2B E-commerce", description: "Global wholesale platform for premium Sri Lankan spice exports.", gradient: "from-indigo-500 to-blue-400", image: "/portfolio/exports.png" },
+  { title: "Colombo FinTech", category: "SaaS Dashboard", description: "Automated wealth management dashboard with real-time analytics.", gradient: "from-cyan-400 to-emerald-400", image: "/portfolio/fintech.png" },
+  { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png" },
+  { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png" },
+  { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png" },
+];
