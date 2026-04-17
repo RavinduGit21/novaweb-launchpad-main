@@ -23,9 +23,12 @@ fs.cpSync('dist/client', path.join(outputDir, 'static'), { recursive: true });
 console.log('🧠  Configuring SSR Bridge...');
 fs.cpSync('dist/server', path.join(outputDir, 'functions/index.func'), { recursive: true });
 
-const handlerPath = path.join(outputDir, 'functions/index.func/index.js');
+// Rename server.js to server.mjs inside the function folder
+fs.renameSync(path.join(outputDir, 'functions/index.func/server.js'), path.join(outputDir, 'functions/index.func/server.mjs'));
+
+const handlerPath = path.join(outputDir, 'functions/index.func/index.mjs');
 const handlerContent = `
-import server from './server.js';
+import server from './server.mjs';
 
 export default async function (req, res) {
   try {
@@ -62,7 +65,7 @@ fs.writeFileSync(handlerPath, handlerContent);
 // 5. Write Vercel Configurations
 fs.writeFileSync(path.join(outputDir, 'functions/index.func/.vc-config.json'), JSON.stringify({
   runtime: 'nodejs20.x',
-  handler: 'index.js',
+  handler: 'index.mjs',
   launcherType: 'Nodejs',
   shouldAddHelpers: true
 }));
