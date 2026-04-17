@@ -47,7 +47,7 @@ export default async function (req, res) {
     // Convert Node.js request to Web Request
     const requestHeaders = new Headers();
     Object.entries(req.headers).forEach(([key, value]) => {
-      if (value) {
+      if (value && !['connection', 'keep-alive', 'transfer-encoding'].includes(key.toLowerCase())) {
         if (Array.isArray(value)) {
           value.forEach(v => requestHeaders.append(key, v));
         } else {
@@ -55,6 +55,9 @@ export default async function (req, res) {
         }
       }
     });
+
+    // Explicitly set the host header to match the Vercel host
+    requestHeaders.set('host', host);
 
     const request = new Request(url.href, {
       method: req.method,
