@@ -60,7 +60,7 @@ fs.writeFileSync(path.join(outputDir, 'functions/index.func/index.js'), handlerC
 
 // 5. Write Vercel Configurations
 fs.writeFileSync(path.join(outputDir, 'functions/index.func/.vc-config.json'), JSON.stringify({
-  runtime: 'nodejs18.x',
+  runtime: 'nodejs20.x',
   handler: 'index.js',
   launcherType: 'Nodejs',
   shouldAddHelpers: true
