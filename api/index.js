@@ -1,4 +1,4 @@
-import server from '../dist/server/server.js'
+import server from './server.js'
 
 export default async function (req, res) {
   try {
