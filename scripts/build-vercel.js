@@ -20,17 +20,10 @@ console.log('🖼️  Moving static assets...');
 fs.cpSync('dist/client', path.join(outputDir, 'static'), { recursive: true });
 
 // 4. Create the Serverless Function
-console.log('🧠  Configuring SSR Bridge...');
-fs.cpSync('dist/server', path.join(outputDir, 'functions/index.func'), { recursive: true });
+console.log('🧠  Generating Unified Standalone Bundle...');
 
-// Rename server.js to server.mjs inside the function folder
-const serverPath = path.join(outputDir, 'functions/index.func/server.mjs');
-fs.renameSync(path.join(outputDir, 'functions/index.func/server.js'), serverPath);
-
-// Bundle all dependencies into server.mjs so Vercel doesn't need to find node_modules
-console.log('📦  Bundling server engine with standalone dependencies...');
-const banner = "import { createRequire } from 'module'; const require = createRequire(import.meta.url);";
-execSync(`npx esbuild ${serverPath} --bundle --minify --platform=node --target=node20 --format=esm --outfile=${serverPath} --allow-overwrite --external:./assets/* --banner:js="${banner}"`, { stdio: 'inherit' });
+// We run esbuild on the original server.js to bundle EVERYTHING including chunks
+execSync('npx esbuild dist/server/server.js --bundle --minify --platform=node --target=node20 --format=esm --outfile=.vercel/output/functions/index.func/server.mjs', { stdio: 'inherit' });
 
 const handlerPath = path.join(outputDir, 'functions/index.func/index.mjs');
 const handlerContent = `
@@ -44,7 +37,6 @@ export default async function (req, res) {
     const host = req.headers['host'];
     const url = new URL(req.url, \`\${protocol}://\${host}\`);
     
-    // Convert Node.js request to Web Request
     const requestHeaders = new Headers();
     Object.entries(req.headers).forEach(([key, value]) => {
       if (value && !['connection', 'keep-alive', 'transfer-encoding'].includes(key.toLowerCase())) {
@@ -55,8 +47,6 @@ export default async function (req, res) {
         }
       }
     });
-
-    // Explicitly set the host header to match the Vercel host
     requestHeaders.set('host', host);
 
     const request = new Request(url.href, {
@@ -74,13 +64,13 @@ export default async function (req, res) {
     });
     
     const body = await response.arrayBuffer();
-    res.setHeader('x-novaweb-version', '1.0.1');
+    res.setHeader('x-novaweb-version', '1.0.2');
     res.send(Buffer.from(body));
     
   } catch (error) {
-    console.error('CRITICAL SSR ERROR (v1.0.1):', error);
+    console.error('CRITICAL SSR ERROR (v1.0.2):', error);
     res.status(500).json({ 
-      version: '1.0.1',
+      version: '1.0.2',
       error: 'Internal Server Error',
       message: error.message,
       stack: error.stack 
