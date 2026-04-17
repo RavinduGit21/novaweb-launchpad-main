@@ -1,24 +1,88 @@
 import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow } from "lucide-react";
+import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check } from "lucide-react";
 import { AnimatedBlobs } from "@/components/AnimatedBlobs";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
-import { SERVICES, FEATURES, PROJECTS } from "@/data/site";
+import { SERVICES, FEATURES, PROJECTS, PRICING } from "@/data/site";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
-      { title: "Novaweb — Websites That Grow Your Business" },
-      { name: "description", content: "Modern web development and automation solutions to help your business grow online." },
-      { property: "og:title", content: "Novaweb — Websites That Grow Your Business" },
-      { property: "og:description", content: "Modern web development and automation solutions to help your business grow online." },
+      { title: "Novaweb — Premium Web Engineering Studio" },
+      { name: "description", content: "We engineer high-performance websites, e-commerce stores, and automation solutions that turn visitors into loyal customers." },
+      { property: "og:title", content: "Novaweb — Premium Web Engineering Studio" },
+      { property: "og:description", content: "We engineer high-performance websites, e-commerce stores, and automation solutions that turn visitors into loyal customers." },
     ],
   }),
   component: HomePage,
-});
+} as any));
+
+const TESTIMONIALS = [
+  {
+    quote: "NovaWeb transformed KadeMart from a local store into an online powerhouse. Our digital sales jumped 140% in 3 months.",
+    name: "Ravindu S.",
+    role: "Founder, KadeMart Superstore",
+    initials: "RS",
+    color: "bg-green-500/20 text-green-400",
+    stars: 5,
+  },
+  {
+    quote: "We got 3x more bookings for our villas after NovaWeb redesigned our site. The automated engineering behind it is simply world-class.",
+    name: "Kasun Perera",
+    role: "Director, Ceylon Heritage Villas",
+    initials: "KP",
+    color: "bg-blue-500/20 text-blue-400",
+    stars: 5,
+  },
+  {
+    quote: "The team delivered our logistics dashboard ahead of schedule — clean, fast, and exactly what we needed. Highly recommended.",
+    name: "Amali Fernando",
+    role: "Operations Head, Lanka Logistics",
+    initials: "AF",
+    color: "bg-violet-500/20 text-violet-400",
+    stars: 5,
+  },
+];
+
+const CLIENT_NAMES = [
+  "KadeMart", "Ceylon Journeys", "Westnahira", "Lanka Logistics",
+  "Heritage Villas", "Amaya Exports", "Starline", "EduWave",
+];
+
+const STATS = [
+  { value: "50+", label: "Projects Delivered" },
+  { value: "30+", label: "Happy Clients" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "3×", label: "Avg. Revenue Growth" },
+];
+
+const FAQS = [
+  {
+    q: "How long does a typical website project take?",
+    a: "Most websites are delivered within 2–4 weeks depending on complexity. E-commerce and SaaS projects typically take 4–8 weeks. We always give you a clear timeline upfront.",
+  },
+  {
+    q: "Do you offer ongoing support after launch?",
+    a: "Yes! Every package includes a support period. After that, we offer monthly maintenance retainers to keep your site updated, secure, and performing at its peak.",
+  },
+  {
+    q: "Can you redesign my existing website?",
+    a: "Absolutely. We specialize in taking outdated websites and transforming them into high-performance, modern platforms. We'll analyze your current site and propose a migration plan.",
+  },
+  {
+    q: "What technologies do you use?",
+    a: "We use modern frameworks like React, Next.js, and TanStack Start — paired with Tailwind CSS, Vercel, and Supabase. We pick the best stack for your specific needs.",
+  },
+  {
+    q: "Do you work with clients outside Sri Lanka?",
+    a: "Yes! We work with clients globally. Our primary market is Sri Lanka but we have successfully delivered projects for clients in the UK, UAE, and Australia.",
+  },
+];
 
 function HomePage() {
+  const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+
   return (
     <>
       {/* HERO */}
@@ -36,9 +100,9 @@ function HomePage() {
           <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
             We engineer high-performance digital experiences designed to turn visitors into loyal customers and scale your business with precision.
           </p>
-          
+
           <div className="mt-10 flex flex-col items-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
-             <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03]"
@@ -52,161 +116,213 @@ function HomePage() {
                 View Portfolio
               </Link>
             </div>
-            
+
             {/* Trust Badges */}
             <div className="mt-6 flex flex-wrap justify-center gap-6 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground/80">
               <div className="flex items-center gap-2">
-                <span className="text-accent text-lg">★</span> Trusted by 20+ businesses
+                <span className="text-accent text-lg">★</span> 30+ Happy clients
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-accent text-lg">★</span> 50+ projects completed
+                <span className="text-accent text-lg">★</span> 50+ Projects delivered
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accent text-lg">★</span> 5★ Average rating
               </div>
             </div>
           </div>
 
-          {/* FINAL PREMIUM 3D MOCKUP */}
+          {/* HERO MOCKUP — Live Portfolio Collage */}
           <div className="relative mt-24 mx-auto max-w-5xl animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <div className="absolute -inset-10 rounded-[3rem] bg-gradient-brand opacity-10 blur-[100px] animate-pulse" />
-            
-            <div className="relative group">
-              <img 
-                src="/premium_mockup.png" 
-                alt="KadeMart Flagship Case Study" 
-                className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-[1.01]"
-              />
-
-              {/* Realigned ROI Badge (Moved down and slightly in) */}
-              <div className="absolute top-[20%] -right-2 sm:-right-10 glass p-5 sm:p-7 rounded-2xl border border-white/10 shadow-glow animate-float z-30 pointer-events-none">
-                <p className="text-[10px] uppercase tracking-widest font-bold text-accent">Digital Growth</p>
-                <p className="text-4xl sm:text-5xl font-bold text-white mt-1">+148%</p>
-                <div className="mt-3 h-1.5 w-full rounded-full bg-white/5 overflow-hidden">
-                   <div className="h-full w-4/5 bg-gradient-brand shadow-[0_0_15px_oklch(0.84_0.17_215)]" />
-                </div>
-              </div>
-
-              {/* Bottom Centered Label */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 glass px-10 py-4 rounded-full border border-white/20 shadow-glow whitespace-nowrap z-30 backdrop-blur-xl">
-                <p className="text-[10px] uppercase tracking-widest font-extrabold text-accent flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                  </span>
-                  Live Engineering Result: KadeMart Omni-channel
-                </p>
-              </div>
-            </div>
+            <HeroCollage />
           </div>
         </div>
       </section>
 
-      {/* SOCIAL PROOF BAND */}
-      <div className="relative border-y border-white/5 bg-white/[0.02] py-12 overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-        <div className="mx-auto max-w-6xl px-4 flex flex-col items-center gap-10">
-          <div className="flex flex-wrap items-center justify-center gap-12 sm:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-             <img src="/logos.png" alt="Client logos" className="h-12 w-auto object-contain" />
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 w-full">
-            <div className="glass p-6 rounded-2xl border border-white/5 italic">
-              <p className="text-lg font-medium text-white/90">
-                "NovaWeb transformed KadeMart from a local store into an <span className="text-accent underline decoration-accent/30 underline-offset-4">online powerhouse</span>. Our digital sales jumped 140% in 3 months."
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-10 w-10 border border-white/10 rounded-full bg-green-500/20 flex items-center justify-center font-bold text-xs text-green-400">KM</div>
-                <div>
-                  <p className="text-sm font-bold text-white">Project Lead</p>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground">KadeMart Superstore • Web & Mobile</p>
-                </div>
+      {/* ANIMATED STATS STRIP */}
+      <div className="relative border-y border-white/5 bg-white/[0.02] py-14 overflow-hidden">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center group">
+                <p className="text-4xl sm:text-5xl font-bold text-gradient transition-transform group-hover:scale-110 duration-300">{s.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</p>
               </div>
-            </div>
-             <div className="glass p-6 rounded-2xl border border-white/5 italic">
-              <p className="text-lg font-medium text-white/90">
-                "We got <span className="text-accent underline decoration-accent/30 underline-offset-4">3x more bookings</span> for our villas. The automated engineering behind it is simply world-class."
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-10 w-10 border border-white/10 rounded-full bg-blue-500/20 flex items-center justify-center font-bold text-xs text-blue-400">KP</div>
-                <div>
-                  <p className="text-sm font-bold text-white">Kasun Perera</p>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Heritage Villas • Sri Lanka</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* PROCESS SECTION */}
+      {/* CLIENT BRANDS */}
+      <div className="relative py-10 overflow-hidden border-b border-white/5">
+        <p className="text-center text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60 mb-8">Trusted by growing businesses across Sri Lanka</p>
+        <div className="flex overflow-hidden select-none">
+          <div className="flex animate-marquee gap-12 min-w-full items-center">
+            {[...CLIENT_NAMES, ...CLIENT_NAMES].map((name, i) => (
+              <span
+                key={`${name}-${i}`}
+                className="shrink-0 text-sm font-bold uppercase tracking-widest text-white/30 hover:text-accent transition-colors duration-300 cursor-default"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* TESTIMONIALS */}
       <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gradient-brand opacity-5 blur-[100px] rounded-full pointer-events-none" />
+        <SectionHeading
+          eyebrow="Client Stories"
+          title={<>Results our <span className="text-gradient">clients love</span></>}
+          subtitle="Real businesses. Real growth. Here's what they say."
+        />
+        <div className="mt-16 mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <div key={t.name} className="relative group glass rounded-3xl p-8 border border-white/5 hover:-translate-y-2 transition-all duration-300 hover:border-accent/20 hover:shadow-glow flex flex-col">
+              {/* Stars */}
+              <div className="flex gap-1 mb-5">
+                {Array.from({ length: t.stars }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-white/85 leading-relaxed flex-1 text-sm">"{t.quote}"</p>
+              <div className="mt-6 flex items-center gap-3 pt-6 border-t border-white/5">
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold text-xs ${t.color}`}>
+                  {t.initials}
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">{t.name}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS SECTION — Connected Timeline */}
+      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent pointer-events-none" />
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             eyebrow="Our Methodology"
-            title={<>Engineered for <span className="text-gradient">precision</span></>}
-            subtitle="We follow a rigorous engineering process to ensure your digital foundation is built to scale."
+            title={<>How we <span className="text-gradient">deliver results</span></>}
+            subtitle="A battle-tested 3-phase process that takes your project from idea to a revenue-generating machine."
           />
-          
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+
+          <div className="mt-20 grid gap-0 md:grid-cols-3 relative">
+            {/* Connecting line — sits at exact circle center (h-20 = 80px, center = 40px = top-10) */}
+            <div className="hidden md:block absolute top-10 left-[calc(50%/3)] right-[calc(50%/3)] h-px">
+              <div className="w-full h-full bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+            </div>
+
             {[
-              { 
-                step: "01", 
-                title: "Blueprint & Discovery", 
-                desc: "We analyze your business metrics and architect a custom technical roadmap tailored to your growth goals.",
-                icon: Target
+              {
+                step: 1,
+                title: "Blueprint & Discovery",
+                tag: "Week 1",
+                desc: "We deep-dive into your business, competitors, and goals. You receive a full technical roadmap and wireframes before any code is written.",
+                icon: Target,
+                details: ["Business audit", "Competitor analysis", "Technical architecture", "Wireframe delivery"],
               },
-              { 
-                step: "02", 
-                title: "High-Performance Build", 
-                desc: "Our engineers craft your site using cutting-edge frameworks, ensuring pixel-perfect design and sub-second load times.",
-                icon: Zap
+              {
+                step: 2,
+                title: "High-Performance Build",
+                tag: "Weeks 2–4",
+                desc: "Our engineers hand-craft every pixel using cutting-edge frameworks. Daily updates keep you in the loop — no surprises.",
+                icon: Zap,
+                details: ["Pixel-perfect UI", "Sub-2s load times", "Mobile-first responsive", "Daily progress updates"],
               },
-              { 
-                step: "03", 
-                title: "Optimization & Scale", 
-                desc: "We continuously monitor performance and iterate on conversion paths to keep your business ahead of the competition.",
-                icon: Workflow
-              }
-            ].map((p, i) => (
-              <div key={p.step} className="relative group">
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-brand opacity-0 blur-xl transition-opacity group-hover:opacity-20" />
-                <div className="relative glass rounded-3xl p-8 h-full border border-white/5 transition-transform hover:-translate-y-2">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="h-12 w-12 rounded-2xl bg-gradient-brand shadow-glow flex items-center justify-center">
-                      <p.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <span className="text-4xl font-bold opacity-10 font-display">{p.step}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {p.desc}
-                  </p>
+              {
+                step: 3,
+                title: "Launch & Growth",
+                tag: "Ongoing",
+                desc: "Launch day is just the beginning. We monitor performance, optimize SEO, and iterate on conversion paths to keep growing your revenue.",
+                icon: Workflow,
+                details: ["SEO optimization", "Conversion tracking", "Performance monitoring", "Ongoing support"],
+              },
+            ].map((p) => (
+              <div key={p.step} className="relative group flex flex-col items-center text-center px-6 pb-10">
+                {/* Glowing circle */}
+                <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-2 border-accent/40 bg-[oklch(0.16_0.04_265)] shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.15)] group-hover:border-accent group-hover:shadow-[0_0_50px_oklch(0.84_0.17_215_/_0.35)] transition-all duration-500 shrink-0">
+                  <div className="absolute inset-2 rounded-full bg-gradient-brand opacity-15 group-hover:opacity-35 transition-opacity" />
+                  <p.icon className="h-7 w-7 text-white relative z-10" />
+                  <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-brand text-[10px] font-black text-white flex items-center justify-center shadow-glow">
+                    {p.step}
+                  </span>
                 </div>
+
+                {/* Tag */}
+                <span className="mt-6 text-[10px] uppercase tracking-widest font-bold text-accent rounded-full glass px-3 py-1">
+                  {p.tag}
+                </span>
+
+                {/* Text */}
+                <h3 className="mt-4 text-xl font-bold text-white">{p.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">{p.desc}</p>
+
+                {/* Detail bullets */}
+                <ul className="mt-5 space-y-2">
+                  {p.details.map((d) => (
+                    <li key={d} className="flex items-center justify-center gap-2 text-sm text-white/60">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section className="px-4 sm:px-6 py-20">
+
+      {/* SERVICES — Featured Split Layout */}
+      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+        <div className="absolute -right-40 top-20 w-[500px] h-[500px] bg-gradient-brand opacity-5 blur-[120px] rounded-full pointer-events-none" />
         <SectionHeading
           eyebrow="Services"
-          title={<>What we <span className="text-gradient">do best</span></>}
-          subtitle="From beautiful websites to smart automation, we deliver complete digital solutions."
+          title={<>Everything your <span className="text-gradient">business needs</span></>}
+          subtitle="From the first pixel to full automation — we cover every layer of your digital presence."
         />
-        <div className="mt-12 mx-auto max-w-6xl grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map((s) => (
-            <div key={s.title} className="group relative rounded-2xl glass p-6 transition-all hover:-translate-y-1 hover:shadow-glow">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand shadow-glow">
-                <s.icon className="h-6 w-6 text-white" />
+        <div className="mt-16 mx-auto max-w-6xl">
+          <div className="grid gap-5 lg:grid-cols-3">
+            {/* Featured large card */}
+            <div className="lg:col-span-1 group relative rounded-3xl overflow-hidden border border-accent/20 shadow-glow bg-gradient-to-br from-[oklch(0.20_0.06_258)] to-[oklch(0.16_0.04_265)] p-8 flex flex-col justify-between min-h-[360px] hover:-translate-y-2 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-brand opacity-5 group-hover:opacity-10 transition-opacity" />
+              <div>
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+                  {React.createElement(SERVICES[0].icon, { className: "h-7 w-7 text-white" })}
+                </div>
+                <h3 className="mt-6 text-2xl font-bold text-white">{SERVICES[0].title}</h3>
+                <p className="mt-3 text-sm text-white/60 leading-relaxed">{SERVICES[0].description}</p>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
-              <div className="mt-4 inline-flex items-center gap-1 text-xs text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                Learn more <ArrowRight className="h-3 w-3" />
-              </div>
+              <Link to="/contact" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:gap-3 transition-all">
+                Start a project <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-          ))}
+            {/* Compact grid */}
+            <div className="lg:col-span-2 grid gap-4 sm:grid-cols-2">
+              {SERVICES.slice(1).map((s) => (
+                <div key={s.title} className="group relative rounded-2xl glass p-6 border border-white/5 hover:border-accent/20 transition-all hover:-translate-y-1 hover:shadow-glow">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand shadow-glow">
+                      <s.icon className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-white">{s.title}</h3>
+                      <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{s.description}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 inline-flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn more <ArrowRight className="h-3 w-3" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -219,8 +335,6 @@ function HomePage() {
             subtitle="A glimpse of recent work across web, e-commerce, and automation."
           />
         </div>
-
-        {/* Marquee Container */}
         <div className="flex overflow-hidden select-none">
           <div className="flex animate-marquee gap-8 whitespace-nowrap min-w-full items-center py-4">
             {[...PROJECTS, ...PROJECTS].map((p, i) => (
@@ -230,7 +344,6 @@ function HomePage() {
             ))}
           </div>
         </div>
-
         <div className="mt-16 text-center">
           <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm font-medium hover:text-accent">
             View all projects <ArrowRight className="h-4 w-4" />
@@ -238,20 +351,129 @@ function HomePage() {
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="px-4 sm:px-6 py-20">
+      {/* FEATURES — Bento Grid */}
+      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+        <div className="absolute -left-40 top-20 w-[500px] h-[500px] bg-gradient-brand opacity-5 blur-[120px] rounded-full pointer-events-none" />
         <SectionHeading
           eyebrow="Why Novaweb"
-          title={<>Built for <span className="text-gradient">performance</span> & growth</>}
+          title={<>The <span className="text-gradient">unfair advantage</span> we give you</>}
+          subtitle="Every decision we make is engineered to give your business a measurable edge."
         />
-        <div className="mt-12 mx-auto max-w-6xl grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map((f) => (
-            <div key={f.title} className="rounded-2xl glass p-6 text-center transition-all hover:shadow-cyan hover:-translate-y-1">
-              <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
-                <f.icon className="h-7 w-7 text-white" />
+        <div className="mt-16 mx-auto max-w-6xl grid gap-4 md:grid-cols-12">
+          {/* Big stat card */}
+          <div className="md:col-span-4 relative group glass rounded-3xl p-8 border border-white/5 hover:border-accent/20 hover:shadow-glow transition-all overflow-hidden flex flex-col justify-between min-h-[260px]">
+            <div className="absolute -bottom-8 -right-8 text-[120px] font-black leading-none text-accent/5 group-hover:text-accent/10 transition-colors select-none">2s</div>
+            <div>
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+                {React.createElement(FEATURES[0].icon, { className: "h-6 w-6 text-white" })}
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{f.title}</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">{f.description}</p>
+              <p className="mt-4 text-5xl font-black text-gradient">&lt;2s</p>
+              <h3 className="mt-2 text-lg font-bold text-white">Load Time</h3>
+            </div>
+            <p className="text-sm text-muted-foreground">{FEATURES[0].description}</p>
+          </div>
+          {/* Wide card */}
+          <div className="md:col-span-8 relative group glass rounded-3xl p-8 border border-white/5 hover:border-accent/20 hover:shadow-glow transition-all overflow-hidden flex flex-col justify-between min-h-[260px]">
+            <div className="absolute -bottom-6 -right-6 text-[100px] font-black leading-none text-accent/5 select-none">3×</div>
+            <div className="flex items-start gap-5">
+              <div className="shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+                {React.createElement(FEATURES[1].icon, { className: "h-6 w-6 text-white" })}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">{FEATURES[1].title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{FEATURES[1].description}</p>
+              </div>
+            </div>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {["WhatsApp Lead Capture", "Auto-routing", "Booking Integration"].map((t) => (
+                <div key={t} className="glass rounded-xl px-3 py-2 text-xs text-center text-white/70 border border-white/5">{t}</div>
+              ))}
+            </div>
+          </div>
+          {/* Two equal cards */}
+          {FEATURES.slice(2).map((f) => (
+            <div key={f.title} className="md:col-span-6 group glass rounded-3xl p-8 border border-white/5 hover:border-accent/20 hover:shadow-glow transition-all hover:-translate-y-1 flex gap-5 items-start">
+              <div className="shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+                <f.icon className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">{f.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-brand opacity-10 blur-[120px] rounded-full pointer-events-none" />
+        <SectionHeading
+          eyebrow="Pricing"
+          title={<>Simple, <span className="text-gradient">transparent</span> pricing</>}
+          subtitle="No hidden fees. Choose the package that fits your stage of growth."
+        />
+        <div className="mt-16 mx-auto max-w-5xl grid gap-6 md:grid-cols-3">
+          {PRICING.map((tier) => (
+            <div
+              key={tier.name}
+              className={`relative flex flex-col rounded-3xl glass p-8 border transition-all hover:-translate-y-2 ${
+                tier.highlight ? "border-accent/50 shadow-glow scale-[1.03]" : "border-white/5"
+              }`}
+            >
+              {tier.highlight && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-4 py-1 text-xs font-bold text-white shadow-glow">
+                  ✦ Most Popular
+                </div>
+              )}
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold">{tier.name}</p>
+              <p className="mt-3 text-4xl font-bold text-white">{tier.price}</p>
+              <p className="mt-3 text-sm text-muted-foreground">{tier.description}</p>
+              <ul className="mt-6 flex-1 space-y-3">
+                {tier.features.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm">
+                    <span className="h-5 w-5 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                      <Check className="h-3 w-3 text-accent" />
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/contact"
+                className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform hover:scale-105 ${
+                  tier.highlight ? "bg-gradient-brand text-white shadow-glow" : "glass border border-white/10 hover:text-accent"
+                }`}
+              >
+                {tier.cta} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="px-4 sm:px-6 py-24">
+        <SectionHeading
+          eyebrow="FAQ"
+          title={<>Questions, <span className="text-gradient">answered</span></>}
+          subtitle="Everything you need to know before working with us."
+        />
+        <div className="mt-16 mx-auto max-w-3xl space-y-4">
+          {FAQS.map((faq, i) => (
+            <div key={i} className="glass rounded-2xl border border-white/5 overflow-hidden">
+              <button
+                className="w-full flex items-center justify-between px-6 py-5 text-left text-sm font-semibold text-white hover:text-accent transition-colors"
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+              >
+                {faq.q}
+                <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 text-accent ${openFaq === i ? "rotate-180" : ""}`} />
+              </button>
+              {openFaq === i && (
+                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-white/5 pt-4">
+                  {faq.a}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -280,52 +502,35 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
   return (
-    <div 
+    <div
       className="group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px]"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       <div className="relative flex-1 overflow-hidden">
-        {/* Base Layer (Sharp & Clear by default) */}
         <div className="absolute inset-0 leading-[0]">
-          <img 
-            src={project.image} 
-            alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
         </div>
-
-        {/* Hover Blur Overlay (Only active on hover) */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 backdrop-blur-md bg-black/40 transition-opacity duration-500 pointer-events-none" />
-
-        {/* Sharp Revealed Layer (Spotlight - Only active on hover) */}
-        <div 
+        <div
           className="absolute inset-0 transition-opacity duration-300 pointer-events-none leading-[0]"
-          style={{ 
+          style={{
             backgroundImage: `url(${project.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
             opacity: isHovering ? 1 : 0,
             WebkitMaskImage: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, black 0%, transparent 100%)`,
-            maskImage: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, black 0%, transparent 100%)`
+            maskImage: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, black 0%, transparent 100%)`,
           }}
         />
-
         <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.19_0.04_265)] via-transparent to-transparent opacity-60" />
-        
-        {/* Centered Button (Only visible on hover) */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-110">
+        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow">
             View Project <ArrowRight className="h-4 w-4" />
           </span>
         </div>
@@ -333,8 +538,106 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
       <div className="p-6 sm:p-8 bg-[oklch(0.16_0.04_265)]/90 backdrop-blur-md">
         <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">{project.category}</p>
         <h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground line-clamp-2 whitespace-normal leading-relaxed">
-          {project.description}
+        <p className="mt-2 text-sm text-muted-foreground line-clamp-2 whitespace-normal leading-relaxed">{project.description}</p>
+      </div>
+    </div>
+  );
+}
+
+// ── Browser Frame Helper ─────────────────────────────────────────────────────
+function BrowserFrame({ src, label, style }: { src: string; label: string; style?: React.CSSProperties }) {
+  return (
+    <div
+      className="absolute rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[oklch(0.14_0.04_265)]"
+      style={style}
+    >
+      {/* Browser chrome */}
+      <div className="flex items-center gap-1.5 px-3 py-2 bg-[oklch(0.12_0.03_265)] border-b border-white/5">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+        <div className="ml-2 flex-1 h-4 rounded-md bg-white/5 px-2 flex items-center">
+          <span className="text-[8px] text-white/30 truncate">novaweb.io/{label.toLowerCase().replace(/\s/g, '-')}</span>
+        </div>
+      </div>
+      {/* Screenshot */}
+      <img src={src} alt={label} className="w-full h-full object-cover object-top" />
+    </div>
+  );
+}
+
+// ── Hero Collage ─────────────────────────────────────────────────────────────
+function HeroCollage() {
+  return (
+    <div className="relative w-full" style={{ height: "480px", perspective: "1200px" }}>
+      {/* Ambient glow */}
+      <div className="absolute inset-0 bg-gradient-brand opacity-5 blur-[80px] rounded-full" />
+
+      {/* LEFT panel — Ceylon Journeys */}
+      <BrowserFrame
+        src="/portfolio/ceylonjourneys.png"
+        label="Ceylon Journeys"
+        style={{
+          width: "42%",
+          height: "78%",
+          top: "11%",
+          left: "0%",
+          transform: "rotateY(18deg) rotateX(4deg) translateZ(-60px)",
+          transformOrigin: "right center",
+          opacity: 0.85,
+          zIndex: 10,
+        }}
+      />
+
+      {/* CENTER panel — KadeMart (hero) */}
+      <BrowserFrame
+        src="/portfolio/kademart.png"
+        label="KadeMart"
+        style={{
+          width: "52%",
+          height: "92%",
+          top: "4%",
+          left: "24%",
+          transform: "rotateY(0deg) rotateX(3deg) translateZ(20px)",
+          zIndex: 30,
+          boxShadow: "0 0 80px oklch(0.84 0.17 215 / 0.25), 0 30px 80px rgba(0,0,0,0.6)",
+          border: "1px solid oklch(0.84 0.17 215 / 0.3)",
+        }}
+      />
+
+      {/* RIGHT panel — Starline */}
+      <BrowserFrame
+        src="/portfolio/starline.png"
+        label="Starline"
+        style={{
+          width: "42%",
+          height: "78%",
+          top: "11%",
+          right: "0%",
+          transform: "rotateY(-18deg) rotateX(4deg) translateZ(-60px)",
+          transformOrigin: "left center",
+          opacity: 0.85,
+          zIndex: 10,
+        }}
+      />
+
+      {/* Floating digital growth badge */}
+      <div className="absolute top-[8%] right-[2%] glass p-4 sm:p-5 rounded-2xl border border-white/10 shadow-glow animate-float z-40 pointer-events-none">
+        <p className="text-[9px] uppercase tracking-widest font-bold text-accent">Digital Growth</p>
+        <p className="text-3xl sm:text-4xl font-bold text-white mt-1">+148%</p>
+        <div className="mt-2 h-1.5 w-full rounded-full bg-white/5 overflow-hidden">
+          <div className="h-full w-4/5 bg-gradient-brand shadow-[0_0_15px_oklch(0.84_0.17_215)]" />
+        </div>
+      </div>
+
+      {/* Live indicator pill */}
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 glass px-8 py-3 rounded-full border border-white/20 shadow-glow whitespace-nowrap z-40 backdrop-blur-xl">
+        <p className="text-[9px] uppercase tracking-widest font-extrabold text-accent flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+          </span>
+          Real Projects — Real Client Growth
         </p>
       </div>
     </div>

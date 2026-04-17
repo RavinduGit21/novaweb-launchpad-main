@@ -1,4 +1,4 @@
-import { Globe, ShoppingCart, MessageSquare, Workflow, Zap, Smartphone, Search, Shield, type LucideIcon } from "lucide-react";
+import { Globe, ShoppingCart, MessageSquare, Workflow, Zap, Smartphone, Search, Shield, LayoutDashboard, TrendingUp, Paintbrush, type LucideIcon } from "lucide-react";
 
 export type Service = {
   icon: LucideIcon;
@@ -18,6 +18,11 @@ export const SERVICES: Service[] = [
     description: "Conversion-focused online stores with secure checkout, payments, and inventory built-in.",
   },
   {
+    icon: LayoutDashboard,
+    title: "SaaS & Dashboards",
+    description: "Complex web applications and data dashboards engineered for performance and scale.",
+  },
+  {
     icon: MessageSquare,
     title: "WhatsApp Automation",
     description: "Automate customer support, orders, and follow-ups directly through WhatsApp Business.",
@@ -26,6 +31,16 @@ export const SERVICES: Service[] = [
     icon: Workflow,
     title: "Business Automation",
     description: "Connect your tools, eliminate repetitive work, and scale operations with smart workflows.",
+  },
+  {
+    icon: TrendingUp,
+    title: "SEO & Performance",
+    description: "Technical SEO, Core Web Vitals optimization, and speed tuning for maximum search visibility.",
+  },
+  {
+    icon: Paintbrush,
+    title: "UI/UX Design",
+    description: "World-class interface design with Figma prototyping before a single line of code is written.",
   },
 ];
 
@@ -58,4 +73,60 @@ export const PROJECTS: Project[] = [
   { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png" },
   { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png" },
   { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png" },
+];
+
+export type PricingTier = {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  highlight: boolean;
+  cta: string;
+};
+
+export const PRICING: PricingTier[] = [
+  {
+    name: "Starter",
+    price: "Rs. 35,000",
+    description: "Perfect for small businesses and personal brands just getting started online.",
+    features: [
+      "Up to 5 pages",
+      "Mobile responsive design",
+      "Contact form integration",
+      "Basic SEO setup",
+      "1 month support",
+    ],
+    highlight: false,
+    cta: "Get Started",
+  },
+  {
+    name: "Growth",
+    price: "Rs. 85,000",
+    description: "Ideal for growing businesses that need a high-performance site with automation.",
+    features: [
+      "Up to 15 pages",
+      "Custom UI/UX design",
+      "WhatsApp automation",
+      "E-commerce ready",
+      "Advanced SEO",
+      "3 months support",
+    ],
+    highlight: true,
+    cta: "Most Popular",
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "For ambitious brands that need a fully custom digital solution at scale.",
+    features: [
+      "Unlimited pages",
+      "SaaS / Dashboard builds",
+      "Full business automation",
+      "Dedicated project manager",
+      "Priority 24/7 support",
+      "Ongoing retainer available",
+    ],
+    highlight: false,
+    cta: "Let's Talk",
+  },
 ];
