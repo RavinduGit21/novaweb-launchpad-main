@@ -47,7 +47,9 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  { title: "Starline SaaS Dashboard", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png" },
   { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png" },
+  { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png" },
   { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png" },
   { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png" },
   { title: "Amaya Exports", category: "B2B E-commerce", description: "Global wholesale platform for premium Sri Lankan spice exports.", gradient: "from-indigo-500 to-blue-400", image: "/portfolio/exports.png" },
