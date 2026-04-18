@@ -1,11 +1,11 @@
 import React from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
 import { PROJECTS } from "@/data/site";
 
-export const Route = createFileRoute("/portfolio")({
+export const Route = createFileRoute("/portfolio/")({
   head: () => ({
     meta: [
       { title: "Portfolio — Novaweb" },
@@ -88,13 +88,29 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
 
         <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.19_0.04_265)] via-transparent to-transparent opacity-60" />
         
-        {/* Centered Button (Only visible on hover) */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-110">
-            View Case Study <ArrowRight className="h-4 w-4" />
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center gap-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30">
+          {project.slug ? (
+            <Link 
+              to={`/portfolio/${project.slug}`}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow hover:scale-110 transition-transform cursor-pointer"
+            >
+              Project Brief <ArrowRight className="h-4 w-4" />
+            </Link>
+          ) : (
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white/50">
+              Project Brief <ArrowRight className="h-4 w-4" />
+            </span>
+          )}
+          {project.liveUrl && (
+            <a 
+              href={project.liveUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
+            >
+              Live Site <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
         </div>
       </div>
       <div className="p-6 sm:p-8 bg-[oklch(0.16_0.04_265)]/90 backdrop-blur-md">

@@ -59,21 +59,23 @@ export type Project = {
   gradient: string;
   description: string;
   image: string;
+  slug?: string;
+  liveUrl?: string;
 };
 
 export const PROJECTS: Project[] = [
-  { title: "EduWave Learning Portal", category: "EdTech & AI", description: "A next-generation educational platform featuring AI-personalized learning paths, integrated progress tracking, and professional Sinhala localization.", gradient: "from-blue-600 to-violet-600", image: "/portfolio/eduwave.png" },
-  { title: "Project Management System", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png" },
-  { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png" },
-  { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png" },
-  { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png" },
-  { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png" },
-  { title: "Amaya Exports", category: "B2B E-commerce", description: "Global wholesale platform for premium Sri Lankan spice exports.", gradient: "from-indigo-500 to-blue-400", image: "/portfolio/exports.png" },
-  { title: "Colombo FinTech", category: "SaaS Dashboard", description: "Automated wealth management dashboard with real-time analytics.", gradient: "from-cyan-400 to-emerald-400", image: "/portfolio/fintech.png" },
-  { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png" },
-  { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png" },
-  { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png" },
-  { title: "Maison Aurelia Luxury Gems", category: "High-End E-commerce", description: "A premium digital boutique for rare gemstones and handcrafted jewelry, featuring elegant gold aesthetics and world-class luxury UX.", gradient: "from-amber-200 to-yellow-600", image: "/portfolio/aurelia.png" },
+  { title: "EduWave Learning Portal", category: "EdTech & AI", description: "A next-generation educational platform featuring AI-personalized learning paths, integrated progress tracking, and professional Sinhala localization.", gradient: "from-blue-600 to-violet-600", image: "/portfolio/eduwave.png", liveUrl: "https://eduwave.novaweb.io" },
+  { title: "Project Management System", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png", liveUrl: "https://starline.novaweb.io" },
+  { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png", liveUrl: "https://westnahira.novaweb.io" },
+  { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png", liveUrl: "https://ceylonjourneys.novaweb.io" },
+  { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png", slug: "kademart", liveUrl: "https://kademart.novaweb.io" },
+  { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png", liveUrl: "https://heritagevillas.novaweb.io" },
+  { title: "Amaya Exports", category: "B2B E-commerce", description: "Global wholesale platform for premium Sri Lankan spice exports.", gradient: "from-indigo-500 to-blue-400", image: "/portfolio/exports.png", liveUrl: "https://amayaexports.novaweb.io" },
+  { title: "Colombo FinTech", category: "SaaS Dashboard", description: "Automated wealth management dashboard with real-time analytics.", gradient: "from-cyan-400 to-emerald-400", image: "/portfolio/fintech.png", liveUrl: "https://colombofintech.novaweb.io" },
+  { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png", liveUrl: "https://azure-realestate.novaweb.io" },
+  { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png", liveUrl: "https://serendibwellness.novaweb.io" },
+  { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png", liveUrl: "https://lankalogistics.novaweb.io" },
+  { title: "Maison Aurelia Luxury Gems", category: "High-End E-commerce", description: "A premium digital boutique for rare gemstones and handcrafted jewelry, featuring elegant gold aesthetics and world-class luxury UX.", gradient: "from-amber-200 to-yellow-600", image: "/portfolio/aurelia.png", liveUrl: "https://maison-aurelia.novaweb.io" },
 ];
 
 export type PricingTier = {
