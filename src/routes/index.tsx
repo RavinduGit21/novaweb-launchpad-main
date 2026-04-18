@@ -1,6 +1,8 @@
 import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check, Users, ExternalLink } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import { AnimatedBlobs } from "@/components/AnimatedBlobs";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
@@ -82,6 +84,9 @@ const FAQS = [
 
 function HomePage() {
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [
+    Autoplay({ delay: 3500, stopOnInteraction: false })
+  ]);
 
   return (
     <>
@@ -262,24 +267,36 @@ function HomePage() {
             subtitle="A glimpse of recent work across web, e-commerce, and automation."
           />
         </div>
-        <div className="flex overflow-hidden select-none py-6">
+        {/* DESKTOP MARQUEE */}
+        <div className="hidden sm:flex overflow-hidden select-none py-6">
           <div className="flex animate-marquee whitespace-nowrap">
             {/* FIRST SET */}
             <div className="flex gap-8 items-center px-4">
               {PROJECTS.map((p) => (
-                <div key={p.title} className="w-[300px] sm:w-[480px] shrink-0">
+                <div key={p.title} className="w-[480px] shrink-0">
                   <ProjectCard project={p} />
                 </div>
               ))}
             </div>
-            {/* SECOND SET (Identical clone for seamless transition) */}
+            {/* SECOND SET */}
             <div className="flex gap-8 items-center px-4">
               {PROJECTS.map((p) => (
-                <div key={`${p.title}-copy`} className="w-[300px] sm:w-[480px] shrink-0">
+                <div key={`${p.title}-copy`} className="w-[480px] shrink-0">
                   <ProjectCard project={p} />
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* MOBILE SLIDER */}
+        <div className="sm:hidden mx-auto max-w-[1400px] overflow-hidden py-6" ref={emblaRef}>
+          <div className="flex px-4 cursor-grab active:cursor-grabbing">
+            {PROJECTS.map((p, i) => (
+              <div key={`${p.title}-${i}`} className="flex-[0_0_85%] min-w-0 pl-6 first:pl-0">
+                <ProjectCard project={p} />
+              </div>
+            ))}
           </div>
         </div>
         <div className="mt-16 text-center">
@@ -442,13 +459,22 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
     setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
+  const handleCardClick = () => {
+    if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div
-      className="group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px]"
+      className={`group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px] transition-all duration-500 ${project.liveUrl ? 'cursor-pointer hover:shadow-cyan/20' : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onClick={handleCardClick}
     >
+      <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-brand opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700" />
+      
       <div className="relative flex-1 overflow-hidden">
         <div className="absolute inset-0 leading-[0]">
           <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -471,6 +497,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
             <Link
               to={`/portfolio/${project.slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow hover:scale-105 transition-transform cursor-pointer"
+              onClick={(e) => e.stopPropagation()}
             >
               Project Brief <ArrowRight className="h-4 w-4" />
             </Link>
@@ -480,20 +507,20 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
             </span>
           )}
           {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
               className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
             >
               Live Site <ExternalLink className="h-4 w-4" />
-            </a>
+            </div>
           )}
         </div>
       </div>
       <div className="p-6 sm:p-8 bg-[oklch(0.16_0.04_265)]/90 backdrop-blur-md">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">{project.category}</p>
-        <h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-semibold flex items-center gap-2">
+          {project.category}
+          {project.liveUrl && <ExternalLink className="h-3 w-3 opacity-50" />}
+        </p>
+        <h3 className="mt-2 text-xl font-bold text-white group-hover:text-accent transition-colors">{project.title}</h3>
         <p className="mt-2 text-sm text-muted-foreground line-clamp-2 whitespace-normal leading-relaxed">{project.description}</p>
       </div>
     </div>

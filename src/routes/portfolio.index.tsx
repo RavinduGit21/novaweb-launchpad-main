@@ -53,13 +53,22 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
     });
   };
 
+  const handleCardClick = () => {
+    if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div 
-      className="group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px] transition-transform hover:-translate-y-2"
+      className={`group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px] transition-all duration-500 ${project.liveUrl ? 'cursor-pointer hover:shadow-cyan/20' : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onClick={handleCardClick}
     >
+      <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-brand opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700" />
+
       <div className="relative flex-1 overflow-hidden">
         {/* Base Layer (Sharp & Clear by default) */}
         <div className="absolute inset-0 leading-[0]">
@@ -93,6 +102,7 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
             <Link 
               to={`/portfolio/${project.slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow hover:scale-110 transition-transform cursor-pointer"
+              onClick={(e) => e.stopPropagation()}
             >
               Project Brief <ArrowRight className="h-4 w-4" />
             </Link>
@@ -102,20 +112,20 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
             </span>
           )}
           {project.liveUrl && (
-            <a 
-              href={project.liveUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <div 
               className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
             >
               Live Site <ExternalLink className="h-4 w-4" />
-            </a>
+            </div>
           )}
         </div>
       </div>
       <div className="p-6 sm:p-8 bg-[oklch(0.16_0.04_265)]/90 backdrop-blur-md">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">{project.category}</p>
-        <h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-semibold flex items-center gap-2">
+          {project.category}
+          {project.liveUrl && <ExternalLink className="h-3 w-3 opacity-50" />}
+        </p>
+        <h3 className="mt-2 text-xl font-bold text-white group-hover:text-accent transition-colors">{project.title}</h3>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           {project.description}
         </p>
