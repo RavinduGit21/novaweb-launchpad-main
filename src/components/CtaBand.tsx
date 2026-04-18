@@ -15,7 +15,7 @@ export function CtaBand() {
           </p>
           <div className="relative mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://wa.me/948850885"
+              href="https://wa.me/94718850885"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03]"

@@ -39,7 +39,7 @@ function ContactPage() {
         <div className="mx-auto max-w-6xl grid gap-8 lg:grid-cols-5">
           <div className="lg:col-span-2 space-y-4">
             <ContactInfo icon={Mail} title="Email us" value="contact@novaweb.lk" href="mailto:contact@novaweb.lk" />
-            <ContactInfo icon={MessageCircle} title="WhatsApp" value="Chat with our team instantly" href="https://wa.me/948850885" accent />
+            <ContactInfo icon={MessageCircle} title="WhatsApp" value="Chat with our team instantly" href="https://wa.me/94718850885" accent />
             <ContactInfo icon={MapPin} title="Based in" value="Sri Lanka — working worldwide" />
           </div>
 
@@ -67,7 +67,7 @@ function ContactPage() {
                   {sent ? <><Check className="h-4 w-4" /> Sent!</> : <>Send Message <Send className="h-4 w-4" /></>}
                 </button>
                 <a
-                  href="https://wa.me/948850885"
+                  href="https://wa.me/94718850885"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-semibold hover:text-accent"

@@ -110,7 +110,7 @@ function HomePage() {
                 Get Your Website Now <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="https://wa.me/948850885"
+                href="https://wa.me/94718850885"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-sm font-semibold hover:text-accent"
@@ -419,7 +419,7 @@ function HomePage() {
       <CtaBand />
 
       <a
-        href="https://wa.me/948850885"
+        href="https://wa.me/94718850885"
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-6 right-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-brand shadow-glow transition-transform hover:scale-110"
@@ -468,7 +468,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.19_0.04_265)] via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 flex items-center justify-center gap-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30">
           {project.slug ? (
-            <Link 
+            <Link
               to={`/portfolio/${project.slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow hover:scale-105 transition-transform cursor-pointer"
             >
@@ -480,9 +480,9 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
             </span>
           )}
           {project.liveUrl && (
-            <a 
-              href={project.liveUrl} 
-              target="_blank" 
+            <a
+              href={project.liveUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
             >
