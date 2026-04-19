@@ -71,15 +71,15 @@ export function SiteHeader() {
         </div>
 
         {open && (
-          <div className="md:hidden mt-2 glass rounded-2xl p-3 shadow-card animate-fade-up">
-            <nav className="flex flex-col">
+          <div className="md:hidden mt-2 glass rounded-2xl p-4 shadow-card animate-fade-up border-white/10 ring-1 ring-white/5">
+            <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground"
-                  activeProps={{ className: "rounded-lg px-3 py-2.5 text-sm text-foreground bg-white/5" }}
+                  className="relative rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-accent hover:bg-white/5"
+                  activeProps={{ className: "text-foreground bg-gradient-to-r from-accent/10 to-transparent text-accent font-bold" }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
@@ -88,7 +88,7 @@ export function SiteHeader() {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-white"
+                className="mt-4 inline-flex items-center justify-center rounded-full bg-gradient-brand px-5 py-3 text-sm font-bold text-white shadow-glow"
               >
                 Get Started
               </Link>

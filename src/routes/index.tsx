@@ -1,6 +1,6 @@
 import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check, Users, ExternalLink } from "lucide-react";
+import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check, Users, ExternalLink, CheckCircle2, ShieldCheck } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { AnimatedBlobs } from "@/components/AnimatedBlobs";
@@ -108,30 +108,36 @@ function HomePage() {
             <Sparkles className="h-3.5 w-3.5" /> Premium Web Engineering Studio
           </span>
           <h1 className="mt-6 text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Modern, Fast &
+            We Build Digital Solutions
             <br />
-            <span className="text-gradient drop-shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.3)]">High-Converting Websites</span>
+            That <span className="text-gradient drop-shadow-[0_0_30px_oklch(0.84_0.17_215_/_0.3)]">Grow Your Business</span>
           </h1>
           <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Engineered for Sri Lankan businesses. Starting from just Rs. 20,000. We build digital platforms designed to scale your business with precision.
+            From websites to automation systems, we help Sri Lankan businesses get more customers and grow faster online.
           </p>
 
           <div className="mt-10 flex flex-col items-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full max-w-lg mx-auto">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03] w-full sm:w-auto"
               >
-                Get Your Website Now <ArrowRight className="h-4 w-4" />
+                Get Started Now <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href="https://wa.me/94718850885"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-sm font-semibold hover:text-accent"
+                className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold transition-all hover:bg-white/10 hover:border-white/30 hover:text-accent w-full sm:w-auto backdrop-blur-xl"
               >
                 <MessageCircle className="h-4 w-4" /> WhatsApp Us
               </a>
+            </div>
+            
+            <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm sm:text-[15px] font-semibold text-white/80 tracking-wide">
+              <span className="flex items-center gap-2.5"><CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent" /> Free Consultation</span>
+              <span className="flex items-center gap-2.5"><ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-accent" /> No Commitment</span>
+              <span className="flex items-center gap-2.5"><Zap className="h-4 w-4 sm:h-5 sm:w-5 text-accent fill-accent/20" /> Fast Delivery</span>
             </div>
 
             {/* Trust Badges — Premium Social Proof Strip */}
@@ -551,7 +557,7 @@ function WhatsAppSimulator() {
             We build intelligent conversational bots that take orders, book appointments, and capture leads while you sleep. Your customers get instant replies in seconds without human intervention.
           </p>
           <div className="pt-6">
-            <a href="https://wa.me/94718850885?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
+            <a href="https://wa.me/94718850885?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
               <MessageCircle className="w-5 h-5" /> Test The Live Demo
             </a>
           </div>
@@ -633,6 +639,11 @@ function WhatsAppSimulator() {
                 <MessageCircle className="w-5 h-5 text-white fill-current" />
               </div>
             </div>
+          </div>
+          <div className="mt-4 md:hidden flex justify-center w-full">
+            <a href="https://wa.me/94718850885?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
+              <MessageCircle className="w-5 h-5" /> Test The Live Demo
+            </a>
           </div>
         </div>
       </div>
