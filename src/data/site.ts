@@ -95,7 +95,8 @@ export const PRICING: PricingTier[] = [
       "Mobile responsive design",
       "Contact form integration",
       "Basic SEO setup",
-      "Whatsapp inergration",
+      "WhatsApp Integration",
+      "Domain & Personalized Hosting",
       "1 month support",
 
     ],
@@ -112,6 +113,7 @@ export const PRICING: PricingTier[] = [
       "WhatsApp automation",
       "E-commerce ready",
       "Advanced SEO",
+      "Domain & Personalized Hosting",
       "3 months support",
     ],
     highlight: true,
@@ -119,7 +121,7 @@ export const PRICING: PricingTier[] = [
   },
   {
     name: "Professional",
-    price: "Rs. 50,000",
+    price: "Rs. 65,000",
     description: "Advanced solutions for businesses requiring full-scale digital commerce and automation.",
     features: [
       "Up to 25 pages",
@@ -127,6 +129,7 @@ export const PRICING: PricingTier[] = [
       "Advanced Business Automation",
       "Custom Dashboard integration",
       "Premium Technical SEO",
+      "Domain & Personalized Hosting",
       "6 months priority support",
     ],
     highlight: false,
@@ -143,6 +146,7 @@ export const PRICING: PricingTier[] = [
       "Dedicated project manager",
       "Priority 24/7 support",
       "Ongoing retainer available",
+      "Domain & Personalized Hosting",
     ],
     highlight: false,
     cta: "Let's Talk",
