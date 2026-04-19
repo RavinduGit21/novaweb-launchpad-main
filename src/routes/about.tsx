@@ -66,7 +66,7 @@ function AboutPage() {
                   <p className="mt-2 text-base font-medium">
                     Novaweb completely transformed our online presence — sales doubled in three months.
                   </p>
-                  <p className="mt-3 text-xs text-muted-foreground">— Sarah M., Founder</p>
+                  <p className="mt-3 text-xs text-muted-foreground">MRS Fernando</p>
                 </div>
               </div>
             </div>
