@@ -1,6 +1,6 @@
 import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
 import { PROJECTS } from "@/data/site";
@@ -60,7 +60,7 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
   };
 
   return (
-    <div 
+    <div
       className={`group relative overflow-hidden rounded-[2rem] glass shadow-card flex flex-col h-[520px] sm:h-[600px] transition-all duration-500 ${project.liveUrl ? 'cursor-pointer hover:shadow-cyan/20' : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
@@ -72,8 +72,8 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
       <div className="relative flex-1 overflow-hidden">
         {/* Base Layer (Sharp & Clear by default) */}
         <div className="absolute inset-0 leading-[0]">
-          <img 
-            src={project.image} 
+          <img
+            src={project.image}
             alt={project.title}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
@@ -83,9 +83,9 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 backdrop-blur-md bg-black/40 transition-opacity duration-500 pointer-events-none" />
 
         {/* Sharp Revealed Layer (Spotlight - Only active on hover) */}
-        <div 
+        <div
           className="absolute inset-0 transition-opacity duration-300 pointer-events-none leading-[0]"
-          style={{ 
+          style={{
             backgroundImage: `url(${project.image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -96,10 +96,10 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.19_0.04_265)] via-transparent to-transparent opacity-60" />
-        
+
         <div className="absolute inset-0 flex items-center justify-center gap-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30">
           {project.slug ? (
-            <Link 
+            <Link
               to={`/portfolio/${project.slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow hover:scale-110 transition-transform cursor-pointer"
               onClick={(e) => e.stopPropagation()}
@@ -112,10 +112,10 @@ function PortfolioCard({ project }: { project: typeof PROJECTS[number] }) {
             </span>
           )}
           {project.liveUrl && (
-            <div 
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
+            <div
+              className={`inline-flex items-center gap-2 rounded-full backdrop-blur-md border px-6 py-3 text-sm font-semibold transition-all cursor-pointer hover:scale-105 ${project.isBot ? 'bg-[#25D366]/20 border-[#25D366]/30 hover:bg-[#25D366]/30 text-[#25D366]' : 'bg-white/10 border-white/20 hover:bg-white/20 text-white'}`}
             >
-              Live Site <ExternalLink className="h-4 w-4" />
+              {project.isBot ? 'Test the Bot' : 'Live Site'} {project.isBot ? <MessageCircle className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
             </div>
           )}
         </div>

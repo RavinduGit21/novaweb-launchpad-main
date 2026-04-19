@@ -61,6 +61,7 @@ export type Project = {
   image: string;
   slug?: string;
   liveUrl?: string;
+  isBot?: boolean;
 };
 
 export const PROJECTS: Project[] = [
@@ -70,11 +71,6 @@ export const PROJECTS: Project[] = [
   { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png", liveUrl: "https://ceylon-journies.vercel.app/" },
   { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png", slug: "kademart", liveUrl: "https://kade-mart-web.vercel.app/" },
   { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png", liveUrl: "https://heritagevillas.novaweb.io" },
-  { title: "Amaya Exports", category: "B2B E-commerce", description: "Global wholesale platform for premium Sri Lankan spice exports.", gradient: "from-indigo-500 to-blue-400", image: "/portfolio/exports.png", liveUrl: "https://amayaexports.novaweb.io" },
-  { title: "Colombo FinTech", category: "SaaS Dashboard", description: "Automated wealth management dashboard with real-time analytics.", gradient: "from-cyan-400 to-emerald-400", image: "/portfolio/fintech.png", liveUrl: "https://colombofintech.novaweb.io" },
-  { title: "Azure Real Estate", category: "Property Portal", description: "High-end property listings with automated lead routing for Colombo 07.", gradient: "from-blue-600 to-cyan-300", image: "/portfolio/realestate.png", liveUrl: "https://azure-realestate.novaweb.io" },
-  { title: "Serendib Wellness", category: "Health & Booking", description: "Wellness retreat booking app with personalized WhatsApp integration.", gradient: "from-sky-500 to-cyan-400", image: "/portfolio/wellness.png", liveUrl: "https://serendibwellness.novaweb.io" },
-  { title: "Lanka Logistics", category: "Supply Chain", description: "Enterprise logistics dashboard with real-time island-wide tracking.", gradient: "from-blue-500 to-indigo-400", image: "/portfolio/logistics.png", liveUrl: "https://lankalogistics.novaweb.io" },
   { title: "Maison Aurelia Luxury Gems", category: "High-End E-commerce", description: "A premium digital boutique for rare gemstones and handcrafted jewelry, featuring elegant gold aesthetics and world-class luxury UX.", gradient: "from-amber-200 to-yellow-600", image: "/portfolio/aurelia.png", liveUrl: "https://aurelia-maison.vercel.app/" },
 ];
 

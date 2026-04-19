@@ -2,7 +2,7 @@ import React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, MessageCircle, Target, Zap, Workflow, Star, ChevronDown, Check, Users, ExternalLink } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import AutoScroll from 'embla-carousel-auto-scroll';
 import { AnimatedBlobs } from "@/components/AnimatedBlobs";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
@@ -84,9 +84,19 @@ const FAQS = [
 
 function HomePage() {
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
-  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [
-    Autoplay({ delay: 3500, stopOnInteraction: false })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start', dragFree: true, skipSnaps: true }, [
+    AutoScroll({ playOnInit: true, stopOnInteraction: false, speed: 1.5, startDelay: 0 })
   ]);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('pointerUp', () => {
+      const autoScroll = emblaApi.plugins().autoScroll;
+      if (autoScroll) {
+        autoScroll.play(0);
+      }
+    });
+  }, [emblaApi]);
 
   return (
     <>
@@ -154,7 +164,7 @@ function HomePage() {
 
           {/* HERO MOCKUP — Live Portfolio Collage */}
           <div className="relative mt-24 mx-auto max-w-5xl animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            <div className="absolute -inset-10 rounded-[3rem] bg-gradient-brand opacity-10 blur-[100px] animate-pulse" />
+            <div className="absolute -inset-10 rounded-[3rem] bg-gradient-brand opacity-10 blur-[80px] sm:blur-[100px] transform-gpu will-change-transform" />
             <HeroCollage />
           </div>
         </div>
@@ -210,6 +220,8 @@ function HomePage() {
 
 
 
+
+      <WhatsAppSimulator />
 
       {/* SERVICES — Featured Split Layout */}
       <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
@@ -432,21 +444,90 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <CtaBand />
-
-      <a
-        href="https://wa.me/94718850885"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-6 right-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-brand shadow-glow transition-transform hover:scale-110"
-        aria-label="Chat on WhatsApp"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-        </svg>
-      </a>
     </>
+  );
+}
+
+// ── WhatsApp Simulator Section (Optimized for Mobile) ─────────────────────────
+function WhatsAppSimulator() {
+  return (
+    <section className="px-4 sm:px-6 py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[oklch(0.14_0.04_265)] to-transparent">
+      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-brand opacity-10 blur-[100px] rounded-full pointer-events-none transform-gpu will-change-transform" />
+      <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-16">
+        {/* Text content */}
+        <div className="flex-1 space-y-6">
+          <p className="text-sm font-bold uppercase tracking-widest text-accent">Business Automation</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.1]">
+            Turn WhatsApp into your <span className="text-gradient">best employee</span>
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            We build intelligent conversational bots that take orders, book appointments, and capture leads while you sleep. Your customers get instant replies in seconds without human intervention.
+          </p>
+          <div className="pt-6">
+            <a href="https://wa.me/94718850885?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
+              <MessageCircle className="w-5 h-5" /> Test The Live Demo
+            </a>
+          </div>
+        </div>
+        {/* Simulator Visual (CSS Only - No heavy blur recalculations) */}
+        <div className="flex-1 w-full max-w-[340px] relative shrink-0 transform-gpu">
+          <div className="bg-[oklch(0.14_0.04_265)] rounded-[2.5rem] border-[6px] border-[oklch(0.20_0.06_258)] overflow-hidden shadow-[0_0_80px_oklch(0.84_0.17_215_/_0.15)] relative h-[550px] flex flex-col">
+            {/* Header */}
+            <div className="bg-[oklch(0.16_0.04_265)] border-b border-white/5 px-4 py-3 flex items-center gap-3 shrink-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-brand flex items-center justify-center shrink-0 shadow-glow">
+                <span className="font-bold text-white text-sm tracking-tighter">NW</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white font-semibold text-[15px] truncate leading-tight">NovaWeb AI System</h3>
+                <p className="text-accent text-xs">online</p>
+              </div>
+              <MessageCircle className="w-5 h-5 text-white/40" />
+            </div>
+            {/* Chat Area */}
+            <div className="flex-1 p-4 bg-[oklch(0.12_0.03_265)] space-y-3 overflow-hidden relative">
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }} />
+
+              <div className="relative animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+                <div className="bg-[oklch(0.18_0.05_260)] border border-white/5 text-white p-2.5 rounded-2xl rounded-tl-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
+                  Hi! 👋 Welcome to NovaWeb. How can I help you scale your business today?
+                  <p className="text-white/40 text-[10px] text-right mt-1">10:42 AM</p>
+                </div>
+              </div>
+
+              <div className="relative flex justify-end animate-fade-up" style={{ animationDelay: '1.2s', animationFillMode: 'both' }}>
+                <div className="bg-accent/20 border border-accent/20 text-white p-2.5 rounded-2xl rounded-tr-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
+                  I need an e-commerce website with WhatsApp ordering.
+                  <div className="flex justify-end items-center gap-1 mt-0.5">
+                    <p className="text-accent/60 text-[10px]">10:43 AM</p>
+                    <Check className="w-3.5 h-3.5 text-accent" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative animate-fade-up" style={{ animationDelay: '2.5s', animationFillMode: 'both' }}>
+                <div className="bg-[oklch(0.18_0.05_260)] border border-white/5 text-white p-2.5 rounded-2xl rounded-tl-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
+                  That's our specialty! Are you selling physical products or digital services?
+                  <div className="mt-2.5 space-y-1.5 flex flex-col">
+                    <div className="bg-accent/10 text-accent border border-accent/20 py-2 px-3 rounded-lg text-xs text-center font-semibold pointer-events-none">Physical Products</div>
+                    <div className="bg-white/5 text-white/70 border border-white/10 py-2 px-3 rounded-lg text-xs text-center font-semibold pointer-events-none">Digital Services</div>
+                  </div>
+                  <p className="text-white/40 text-[10px] text-right mt-1.5">10:43 AM</p>
+                </div>
+              </div>
+            </div>
+            {/* Input Area */}
+            <div className="bg-[oklch(0.16_0.04_265)] border-t border-white/5 px-3 py-2.5 flex items-center gap-2 shrink-0">
+              <div className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-white/40 text-sm">
+                Message...
+              </div>
+              <div className="w-10 h-10 rounded-full bg-gradient-brand shadow-glow flex items-center justify-center shrink-0">
+                <MessageCircle className="w-5 h-5 text-white fill-current" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -474,7 +555,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
       onClick={handleCardClick}
     >
       <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-brand opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700" />
-      
+
       <div className="relative flex-1 overflow-hidden">
         <div className="absolute inset-0 leading-[0]">
           <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -508,9 +589,9 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
           )}
           {project.liveUrl && (
             <div
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all cursor-pointer hover:scale-105"
+              className={`inline-flex items-center gap-2 rounded-full backdrop-blur-md border px-6 py-3 text-sm font-semibold transition-all cursor-pointer hover:scale-105 ${project.isBot ? 'bg-[#25D366]/20 border-[#25D366]/30 hover:bg-[#25D366]/30 text-[#25D366]' : 'bg-white/10 border-white/20 hover:bg-white/20 text-white'}`}
             >
-              Live Site <ExternalLink className="h-4 w-4" />
+              {project.isBot ? 'Test the Bot' : 'Live Site'} {project.isBot ? <MessageCircle className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
             </div>
           )}
         </div>
@@ -531,7 +612,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
 function BrowserFrame({ src, label, style }: { src: string; label: string; style?: React.CSSProperties }) {
   return (
     <div
-      className="absolute rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[oklch(0.14_0.04_265)]"
+      className="absolute rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[oklch(0.14_0.04_265)] transform-gpu will-change-transform"
       style={style}
     >
       {/* Browser chrome */}
@@ -554,7 +635,7 @@ function HeroCollage() {
   return (
     <div className="relative w-full" style={{ height: "480px", perspective: "1200px" }}>
       {/* Ambient glow */}
-      <div className="absolute inset-0 bg-gradient-brand opacity-5 blur-[80px] rounded-full" />
+      <div className="absolute inset-0 bg-gradient-brand opacity-5 blur-[60px] sm:blur-[80px] rounded-full transform-gpu will-change-transform" />
 
       {/* LEFT panel — Ceylon Journeys */}
       <BrowserFrame
@@ -605,16 +686,16 @@ function HeroCollage() {
       />
 
       {/* Floating digital growth badge */}
-      <div className="absolute top-[8%] right-[2%] glass p-4 sm:p-5 rounded-2xl border border-white/10 shadow-glow animate-float z-40 pointer-events-none">
+      <div className="absolute top-[8%] right-[2%] bg-[oklch(0.16_0.04_265)]/95 shadow-glow p-4 sm:p-5 rounded-2xl border border-white/10 z-40 pointer-events-none transform-gpu will-change-transform">
         <p className="text-[9px] uppercase tracking-widest font-bold text-accent">Digital Growth</p>
         <p className="text-3xl sm:text-4xl font-bold text-white mt-1">+148%</p>
         <div className="mt-2 h-1.5 w-full rounded-full bg-white/5 overflow-hidden">
-          <div className="h-full w-4/5 bg-gradient-brand shadow-[0_0_15px_oklch(0.84_0.17_215)]" />
+          <div className="h-full w-4/5 bg-gradient-brand shadow-[0_0_15px_oklch(0.84_0.17_215)] transform-gpu" />
         </div>
       </div>
 
       {/* Live indicator pill */}
-      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 glass px-8 py-3 rounded-full border border-white/20 shadow-glow whitespace-nowrap z-40 backdrop-blur-xl">
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[oklch(0.16_0.04_265)]/95 px-8 py-3 rounded-full border border-white/20 shadow-glow whitespace-nowrap z-40 transform-gpu will-change-transform">
         <p className="text-[9px] uppercase tracking-widest font-extrabold text-accent flex items-center gap-2">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
