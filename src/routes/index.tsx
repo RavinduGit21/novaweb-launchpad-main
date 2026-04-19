@@ -120,20 +120,20 @@ function HomePage() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full max-w-lg mx-auto">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03] w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-4 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.03] w-full sm:w-auto"
               >
-                Get Started Now <ArrowRight className="h-4 w-4" />
+                Get Your Website Now <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href="https://wa.me/94718850885"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold transition-all hover:bg-white/10 hover:border-white/30 hover:text-accent w-full sm:w-auto backdrop-blur-xl"
+                className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/20 bg-white/5 px-5 py-4 text-sm font-bold transition-all hover:bg-white/10 hover:border-white/30 hover:text-accent w-full sm:w-auto backdrop-blur-xl"
               >
                 <MessageCircle className="h-4 w-4" /> WhatsApp Us
               </a>
             </div>
-            
+
             <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm sm:text-[15px] font-semibold text-white/80 tracking-wide">
               <span className="flex items-center gap-2.5"><CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent" /> Free Consultation</span>
               <span className="flex items-center gap-2.5"><ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-accent" /> No Commitment</span>
