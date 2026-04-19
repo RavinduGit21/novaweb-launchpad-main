@@ -169,7 +169,7 @@ function HomePage() {
           </div>
 
           {/* HERO MOCKUP — Live Portfolio Collage */}
-          <div className="relative mt-24 mx-auto max-w-5xl animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <div className="hidden sm:block relative mt-24 mx-auto max-w-5xl animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <div className="absolute -inset-10 rounded-[3rem] bg-gradient-brand opacity-10 blur-[80px] sm:blur-[100px] transform-gpu will-change-transform" />
             <HeroCollage />
           </div>

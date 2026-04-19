@@ -31,7 +31,7 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" },
       { title: "Novaweb — Web Development & Automation" },
       { name: "description", content: "Modern websites, e-commerce, and automation solutions to grow your business." },
       { name: "author", content: "Novaweb" },
@@ -72,7 +72,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <SmoothScroll />
       <SiteHeader />
       <main className="flex-1 pt-24">
