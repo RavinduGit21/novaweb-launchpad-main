@@ -386,7 +386,7 @@ function HomePage() {
           title={<>Simple, <span className="text-gradient">transparent</span> pricing</>}
           subtitle="No hidden fees. Choose the package that fits your stage of growth."
         />
-        <div className="mt-16 mx-auto max-w-5xl grid gap-6 md:grid-cols-3">
+        <div className="mt-16 mx-auto max-w-7xl grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {PRICING.map((tier) => (
             <div
               key={tier.name}

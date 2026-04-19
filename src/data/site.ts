@@ -88,24 +88,26 @@ export type PricingTier = {
 export const PRICING: PricingTier[] = [
   {
     name: "Starter",
-    price: "Rs. 20,000",
+    price: "Rs. 15,000",
     description: "Perfect for small businesses and personal brands just getting started online.",
     features: [
       "Up to 5 pages",
       "Mobile responsive design",
       "Contact form integration",
       "Basic SEO setup",
+      "Whatsapp inergration",
       "1 month support",
+
     ],
     highlight: false,
     cta: "Get Started",
   },
   {
     name: "Growth",
-    price: "Rs. 85,000",
+    price: "Rs. 35,000",
     description: "Ideal for growing businesses that need a high-performance site with automation.",
     features: [
-      "Up to 15 pages",
+      "Up to 10 pages",
       "Custom UI/UX design",
       "WhatsApp automation",
       "E-commerce ready",
@@ -114,6 +116,21 @@ export const PRICING: PricingTier[] = [
     ],
     highlight: true,
     cta: "Most Popular",
+  },
+  {
+    name: "Professional",
+    price: "Rs. 50,000",
+    description: "Advanced solutions for businesses requiring full-scale digital commerce and automation.",
+    features: [
+      "Up to 25 pages",
+      "Full E-commerce system",
+      "Advanced Business Automation",
+      "Custom Dashboard integration",
+      "Premium Technical SEO",
+      "6 months priority support",
+    ],
+    highlight: false,
+    cta: "Expand Now",
   },
   {
     name: "Enterprise",
