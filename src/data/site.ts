@@ -4,6 +4,7 @@ export type Service = {
   icon: LucideIcon;
   title: string;
   description: string;
+  slug?: string;
 };
 
 export const SERVICES: Service[] = [
@@ -26,6 +27,7 @@ export const SERVICES: Service[] = [
     icon: MessageSquare,
     title: "WhatsApp Automation",
     description: "Automate customer support, orders, and follow-ups directly through WhatsApp Business.",
+    slug: "whatsapp",
   },
   {
     icon: Workflow,

@@ -13,7 +13,9 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
+import { Route as ServicesWhatsappRouteImport } from './routes/services.whatsapp'
 import { Route as PortfolioKademartRouteImport } from './routes/portfolio.kademart'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -36,10 +38,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
   id: '/portfolio/',
   path: '/portfolio/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesWhatsappRoute = ServicesWhatsappRouteImport.update({
+  id: '/whatsapp',
+  path: '/whatsapp',
+  getParentRoute: () => ServicesRoute,
 } as any)
 const PortfolioKademartRoute = PortfolioKademartRouteImport.update({
   id: '/portfolio/kademart',
@@ -51,26 +63,31 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/portfolio/kademart': typeof PortfolioKademartRoute
+  '/services/whatsapp': typeof ServicesWhatsappRoute
   '/portfolio/': typeof PortfolioIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
   '/portfolio/kademart': typeof PortfolioKademartRoute
+  '/services/whatsapp': typeof ServicesWhatsappRoute
   '/portfolio': typeof PortfolioIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/portfolio/kademart': typeof PortfolioKademartRoute
+  '/services/whatsapp': typeof ServicesWhatsappRoute
   '/portfolio/': typeof PortfolioIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,15 +97,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/portfolio/kademart'
+    | '/services/whatsapp'
     | '/portfolio/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/services'
     | '/portfolio/kademart'
+    | '/services/whatsapp'
     | '/portfolio'
+    | '/services'
   id:
     | '__root__'
     | '/'
@@ -96,14 +116,16 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/portfolio/kademart'
+    | '/services/whatsapp'
     | '/portfolio/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   PortfolioKademartRoute: typeof PortfolioKademartRoute
   PortfolioIndexRoute: typeof PortfolioIndexRoute
 }
@@ -138,12 +160,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/portfolio/': {
       id: '/portfolio/'
       path: '/portfolio'
       fullPath: '/portfolio/'
       preLoaderRoute: typeof PortfolioIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/services/whatsapp': {
+      id: '/services/whatsapp'
+      path: '/whatsapp'
+      fullPath: '/services/whatsapp'
+      preLoaderRoute: typeof ServicesWhatsappRouteImport
+      parentRoute: typeof ServicesRoute
     }
     '/portfolio/kademart': {
       id: '/portfolio/kademart'
@@ -155,11 +191,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ServicesRouteChildren {
+  ServicesWhatsappRoute: typeof ServicesWhatsappRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesWhatsappRoute: ServicesWhatsappRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   PortfolioKademartRoute: PortfolioKademartRoute,
   PortfolioIndexRoute: PortfolioIndexRoute,
 }

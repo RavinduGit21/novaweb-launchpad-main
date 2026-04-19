@@ -260,9 +260,15 @@ function HomePage() {
                       <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{s.description}</p>
                     </div>
                   </div>
-                  <div className="mt-4 inline-flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                    Learn more <ArrowRight className="h-3 w-3" />
-                  </div>
+                  {s.slug ? (
+                    <Link to={`/services/${s.slug}`} className="mt-4 inline-flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                      Learn more <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  ) : (
+                    <div className="mt-4 inline-flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity cursor-default">
+                      Learn more <ArrowRight className="h-3 w-3" />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -448,8 +454,89 @@ function HomePage() {
   );
 }
 
-// ── WhatsApp Simulator Section (Optimized for Mobile) ─────────────────────────
+// ── WhatsApp Simulator Section (Looping Animated Conversation) ─────────────────
+type ChatMessage = {
+  id: number;
+  type: 'bot' | 'user';
+  text: string;
+  time: string;
+  buttons?: string[];
+};
+
+const CHAT_SCRIPT: ChatMessage[] = [
+  { id: 1, type: 'bot', text: "Hi! 👋 Welcome to NovaWeb. How can I help you scale your business today?", time: "10:42 AM" },
+  { id: 2, type: 'user', text: "I need an e-commerce website with WhatsApp ordering.", time: "10:43 AM" },
+  { id: 3, type: 'bot', text: "That's our specialty! Are you selling physical products or digital services?", time: "10:43 AM", buttons: ["Physical Products", "Digital Services"] },
+  { id: 4, type: 'user', text: "Physical products — a grocery delivery app.", time: "10:44 AM" },
+  { id: 5, type: 'bot', text: "Perfect! We'll build you a full-stack solution with real-time inventory, automated order confirmations via WhatsApp, and a delivery tracking system. 🚀", time: "10:44 AM" },
+  { id: 6, type: 'user', text: "That sounds amazing! How soon can we start?", time: "10:45 AM" },
+  { id: 7, type: 'bot', text: "We can kick off this week! I'll connect you with our project lead. Expect a detailed proposal within 24 hours. ✨", time: "10:45 AM", buttons: ["Book a Call", "View Portfolio"] },
+];
+
 function WhatsAppSimulator() {
+  const [visibleMessages, setVisibleMessages] = React.useState<ChatMessage[]>([]);
+  const [isTyping, setIsTyping] = React.useState(false);
+  const [typingType, setTypingType] = React.useState<'bot' | 'user'>('bot');
+  const chatRef = React.useRef<HTMLDivElement>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearAllTimeouts = React.useCallback(() => {
+    timeoutRef.current.forEach(clearTimeout);
+    timeoutRef.current = [];
+  }, []);
+
+  const addTimeout = React.useCallback((fn: () => void, delay: number) => {
+    const id = setTimeout(fn, delay);
+    timeoutRef.current.push(id);
+    return id;
+  }, []);
+
+  const runConversation = React.useCallback(() => {
+    clearAllTimeouts();
+    setVisibleMessages([]);
+    setIsTyping(false);
+
+    let cumulativeDelay = 600;
+
+    CHAT_SCRIPT.forEach((msg, index) => {
+      // Show typing indicator
+      addTimeout(() => {
+        setTypingType(msg.type);
+        setIsTyping(true);
+      }, cumulativeDelay);
+
+      // Typing duration varies
+      const typingDuration = msg.type === 'bot' ? 1200 : 800;
+      cumulativeDelay += typingDuration;
+
+      // Show message, hide typing
+      addTimeout(() => {
+        setIsTyping(false);
+        setVisibleMessages(prev => [...prev, msg]);
+      }, cumulativeDelay);
+
+      // Pause before next message
+      cumulativeDelay += 1000;
+    });
+
+    // After all messages, wait then restart
+    addTimeout(() => {
+      runConversation();
+    }, cumulativeDelay + 3000);
+  }, [addTimeout, clearAllTimeouts]);
+
+  React.useEffect(() => {
+    runConversation();
+    return clearAllTimeouts;
+  }, [runConversation, clearAllTimeouts]);
+
+  // Auto-scroll chat to bottom
+  React.useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTo({ top: chatRef.current.scrollHeight, behavior: 'smooth' });
+    }
+  }, [visibleMessages, isTyping]);
+
   return (
     <section className="px-4 sm:px-6 py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[oklch(0.14_0.04_265)] to-transparent">
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-brand opacity-10 blur-[100px] rounded-full pointer-events-none transform-gpu will-change-transform" />
@@ -469,7 +556,8 @@ function WhatsAppSimulator() {
             </a>
           </div>
         </div>
-        {/* Simulator Visual (CSS Only - No heavy blur recalculations) */}
+
+        {/* Animated Chat Simulator */}
         <div className="flex-1 w-full max-w-[340px] relative shrink-0 transform-gpu">
           <div className="bg-[oklch(0.14_0.04_265)] rounded-[2.5rem] border-[6px] border-[oklch(0.20_0.06_258)] overflow-hidden shadow-[0_0_80px_oklch(0.84_0.17_215_/_0.15)] relative h-[550px] flex flex-col">
             {/* Header */}
@@ -479,42 +567,63 @@ function WhatsAppSimulator() {
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-white font-semibold text-[15px] truncate leading-tight">NovaWeb AI System</h3>
-                <p className="text-accent text-xs">online</p>
+                <p className="text-accent text-xs">{isTyping && typingType === 'bot' ? 'typing...' : 'online'}</p>
               </div>
               <MessageCircle className="w-5 h-5 text-white/40" />
             </div>
+
             {/* Chat Area */}
-            <div className="flex-1 p-4 bg-[oklch(0.12_0.03_265)] space-y-3 overflow-hidden relative">
+            <div ref={chatRef} className="flex-1 p-4 bg-[oklch(0.12_0.03_265)] space-y-3 overflow-y-auto relative scroll-smooth" style={{ scrollbarWidth: 'none' }}>
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }} />
 
-              <div className="relative animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
-                <div className="bg-[oklch(0.18_0.05_260)] border border-white/5 text-white p-2.5 rounded-2xl rounded-tl-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
-                  Hi! 👋 Welcome to NovaWeb. How can I help you scale your business today?
-                  <p className="text-white/40 text-[10px] text-right mt-1">10:42 AM</p>
+              {visibleMessages.map((msg) => (
+                <div
+                  key={`${msg.id}-${visibleMessages.length}`}
+                  className="relative"
+                  style={{ animation: 'chatSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both' }}
+                >
+                  {msg.type === 'bot' ? (
+                    <div className="bg-[oklch(0.18_0.05_260)] border border-white/5 text-white p-2.5 rounded-2xl rounded-tl-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
+                      {msg.text}
+                      {msg.buttons && (
+                        <div className="mt-2.5 space-y-1.5 flex flex-col">
+                          {msg.buttons.map((btn, bi) => (
+                            <div key={bi} className={`${bi === 0 ? 'bg-accent/10 text-accent border-accent/20' : 'bg-white/5 text-white/70 border-white/10'} border py-2 px-3 rounded-lg text-xs text-center font-semibold pointer-events-none`}>
+                              {btn}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      <p className="text-white/40 text-[10px] text-right mt-1">{msg.time}</p>
+                    </div>
+                  ) : (
+                    <div className="flex justify-end">
+                      <div className="bg-accent/20 border border-accent/20 text-white p-2.5 rounded-2xl rounded-tr-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
+                        {msg.text}
+                        <div className="flex justify-end items-center gap-1 mt-0.5">
+                          <p className="text-accent/60 text-[10px]">{msg.time}</p>
+                          <Check className="w-3.5 h-3.5 text-accent" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ))}
 
-              <div className="relative flex justify-end animate-fade-up" style={{ animationDelay: '1.2s', animationFillMode: 'both' }}>
-                <div className="bg-accent/20 border border-accent/20 text-white p-2.5 rounded-2xl rounded-tr-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
-                  I need an e-commerce website with WhatsApp ordering.
-                  <div className="flex justify-end items-center gap-1 mt-0.5">
-                    <p className="text-accent/60 text-[10px]">10:43 AM</p>
-                    <Check className="w-3.5 h-3.5 text-accent" />
+              {/* Typing Indicator */}
+              {isTyping && (
+                <div className={`relative ${typingType === 'user' ? 'flex justify-end' : ''}`} style={{ animation: 'chatSlideIn 0.25s ease-out both' }}>
+                  <div className={`${typingType === 'bot' ? 'bg-[oklch(0.18_0.05_260)] border-white/5' : 'bg-accent/20 border-accent/20'} border p-3 rounded-2xl ${typingType === 'bot' ? 'rounded-tl-sm' : 'rounded-tr-sm'} w-fit`}>
+                    <div className="flex gap-1.5 items-center h-4">
+                      <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '0ms', animationDuration: '0.6s' }} />
+                      <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '150ms', animationDuration: '0.6s' }} />
+                      <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '300ms', animationDuration: '0.6s' }} />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="relative animate-fade-up" style={{ animationDelay: '2.5s', animationFillMode: 'both' }}>
-                <div className="bg-[oklch(0.18_0.05_260)] border border-white/5 text-white p-2.5 rounded-2xl rounded-tl-sm w-fit max-w-[85%] text-sm shadow-sm leading-relaxed">
-                  That's our specialty! Are you selling physical products or digital services?
-                  <div className="mt-2.5 space-y-1.5 flex flex-col">
-                    <div className="bg-accent/10 text-accent border border-accent/20 py-2 px-3 rounded-lg text-xs text-center font-semibold pointer-events-none">Physical Products</div>
-                    <div className="bg-white/5 text-white/70 border border-white/10 py-2 px-3 rounded-lg text-xs text-center font-semibold pointer-events-none">Digital Services</div>
-                  </div>
-                  <p className="text-white/40 text-[10px] text-right mt-1.5">10:43 AM</p>
-                </div>
-              </div>
+              )}
             </div>
+
             {/* Input Area */}
             <div className="bg-[oklch(0.16_0.04_265)] border-t border-white/5 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-white/40 text-sm">
