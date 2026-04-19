@@ -177,7 +177,7 @@ function HomePage() {
       </section>
 
       {/* ANIMATED STATS STRIP */}
-      <div className="relative border-y border-white/5 bg-white/[0.02] py-14 overflow-hidden">
+      <div className="relative py-14 overflow-hidden">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {STATS.map((s) => (
@@ -193,7 +193,7 @@ function HomePage() {
 
 
       {/* TESTIMONIALS */}
-      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+      <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gradient-brand opacity-5 blur-[100px] rounded-full pointer-events-none" />
         <SectionHeading
           eyebrow="Client Stories"
@@ -230,7 +230,7 @@ function HomePage() {
       <WhatsAppSimulator />
 
       {/* SERVICES — Featured Split Layout */}
-      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
+      <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-hidden">
         <div className="absolute -right-40 top-20 w-[500px] h-[500px] bg-gradient-brand opacity-5 blur-[120px] rounded-full pointer-events-none" />
         <SectionHeading
           eyebrow="Services"
@@ -283,7 +283,7 @@ function HomePage() {
       </section>
 
       {/* PORTFOLIO PREVIEW */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 sm:py-24 relative overflow-hidden">
         <div className="px-4 sm:px-6 mb-16">
           <SectionHeading
             eyebrow="Portfolio"
@@ -331,8 +331,8 @@ function HomePage() {
       </section>
 
       {/* FEATURES — Bento Grid */}
-      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
-        <div className="absolute -left-40 top-20 w-[500px] h-[500px] bg-gradient-brand opacity-5 blur-[120px] rounded-full pointer-events-none" />
+      <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-visible">
+        <div className="absolute -left-40 top-20 w-[500px] h-[500px] bg-gradient-brand opacity-5 blur-[120px] rounded-full pointer-events-none transform-gpu" />
         <SectionHeading
           eyebrow="Why Novaweb"
           title={<>The <span className="text-gradient">unfair advantage</span> we give you</>}
@@ -385,8 +385,8 @@ function HomePage() {
       </section>
 
       {/* PRICING */}
-      <section className="px-4 sm:px-6 py-24 relative overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-brand opacity-10 blur-[120px] rounded-full pointer-events-none" />
+      <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-visible">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-brand opacity-10 blur-[120px] rounded-full pointer-events-none transform-gpu" />
         <SectionHeading
           eyebrow="Pricing"
           title={<>Simple, <span className="text-gradient">transparent</span> pricing</>}
@@ -430,7 +430,7 @@ function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="px-4 sm:px-6 py-24">
+      <section className="px-4 sm:px-6 py-12 sm:py-24">
         <SectionHeading
           eyebrow="FAQ"
           title={<>Questions, <span className="text-gradient">answered</span></>}
@@ -544,7 +544,7 @@ function WhatsAppSimulator() {
   }, [visibleMessages, isTyping]);
 
   return (
-    <section className="px-4 sm:px-6 py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[oklch(0.14_0.04_265)] to-transparent">
+    <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-hidden">
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-brand opacity-10 blur-[100px] rounded-full pointer-events-none transform-gpu will-change-transform" />
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-16">
         {/* Text content */}

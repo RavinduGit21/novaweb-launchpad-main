@@ -81,7 +81,7 @@ function KademartCaseStudy() {
       </section>
 
       {/* The Challenge */}
-      <section className="py-24 px-4 bg-white/[0.02]">
+      <section className="py-12 sm:py-24 px-4 bg-white/[0.02]">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl font-black text-white tracking-tight mb-6">The Challenge</h2>
@@ -115,7 +115,7 @@ function KademartCaseStudy() {
       </section>
 
       {/* Project Brief / Key Features */}
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-white tracking-tight leading-tight">Comprehensive <span className="text-gradient">Feature Set</span></h2>
@@ -179,7 +179,7 @@ function KademartCaseStudy() {
       </section>
 
       {/* Technical Innovation */}
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-white tracking-tight leading-tight">Technical <span className="text-gradient">Advantage</span></h2>
@@ -224,7 +224,7 @@ function KademartCaseStudy() {
       </section>
 
       {/* Admin Experience */}
-      <section className="py-24 px-4 bg-[oklch(0.18_0.04_265)]">
+      <section className="py-12 sm:py-24 px-4 bg-[oklch(0.18_0.04_265)]">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
              <div className="order-2 md:order-1 relative h-[500px] w-full flex items-center justify-center transform-3d perspective-2000">
@@ -267,7 +267,7 @@ function KademartCaseStudy() {
       </section>
 
       {/* Results / Business Impact */}
-      <section className="py-24 px-4 border-t border-white/5">
+      <section className="py-12 sm:py-24 px-4 border-t border-white/5">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white tracking-tighter mb-12">The <span className="text-gradient">Business Impact</span></h2>
           <div className="grid sm:grid-cols-3 gap-8 mb-16">

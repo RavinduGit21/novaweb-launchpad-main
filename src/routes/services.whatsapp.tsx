@@ -63,7 +63,7 @@ function WhatsAppServicePage() {
   return (
     <div className="relative pb-20">
       {/* Hero Section */}
-      <section className="px-4 sm:px-6 pt-16 pb-24 relative overflow-hidden">
+      <section className="px-4 sm:px-6 py-12 sm:py-24 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-brand opacity-10 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="mx-auto max-w-4xl text-center">
@@ -111,7 +111,7 @@ function WhatsAppServicePage() {
       </section>
 
       {/* Features Grid */}
-      <section className="px-4 sm:px-6 py-24 bg-white/[0.02] border-y border-white/5">
+      <section className="px-4 sm:px-6 py-12 sm:py-24 bg-white/[0.02] border-y border-white/5">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((f, i) => (
@@ -136,7 +136,7 @@ function WhatsAppServicePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="px-4 sm:px-6 py-24 bg-white/[0.01]">
+      <section className="px-4 sm:px-6 py-12 sm:py-24 bg-white/[0.01]">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             eyebrow="The Workflow"
@@ -167,7 +167,7 @@ function WhatsAppServicePage() {
       </section>
 
       {/* Comparison Section: Manual vs Automated */}
-      <section className="px-4 sm:px-6 py-24">
+      <section className="px-4 sm:px-6 py-12 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="glass rounded-[3rem] border border-white/5 overflow-hidden shadow-2xl">
             <div className="grid md:grid-cols-2">
