@@ -1,6 +1,6 @@
 # NovaWeb — Premium Custom Web Engineering
 
-NovaWeb is a high-end digital engineering studio based in Sri Lanka, specializing in bespoke web applications, e-commerce solutions, and business automation. This repository contains the source code for the primary NovaWeb landing page and portfolio.
+NovaWeb is a high-end digital engineering studio based in Sri Lanka, specializing in bespoke web applications, e-commerce solutions, and business automation. This repository contains the source code for the primary NovaWeb landing page and portfolio..
 
 ## 🚀 Tech Stack
 
