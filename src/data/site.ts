@@ -67,12 +67,12 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  { title: "Flame & Fork Restaurant", category: "Food & Delivery", description: "A high-energy digital dining experience with integrated shopping cart and real-time WhatsApp ordering.", gradient: "from-orange-500 to-amber-600", image: "/portfolio/flamefork.png", liveUrl: "https://flame-fork-gamma.vercel.app/" },
   { title: "EduWave Learning Portal", category: "EdTech & AI", description: "A next-generation educational platform featuring AI-personalized learning paths, integrated progress tracking, and professional Sinhala localization.", gradient: "from-blue-600 to-violet-600", image: "/portfolio/eduwave.png", liveUrl: "https://edu-wave-neon.vercel.app/" },
   { title: "Project Management System", category: "Enterprise Solutions", description: "A comprehensive project management system designed for real-time organizational productivity and operations tracking.", gradient: "from-blue-500 to-indigo-600", image: "/portfolio/starline.png", liveUrl: "https://www.nebulix.online/" },
   { title: "Westnahira Cellularz", category: "Tech & E-commerce", description: "Premium resale platform for certified pre-owned Apple devices with real-time inventory tracking.", gradient: "from-blue-600 to-indigo-400", image: "/portfolio/westnahira.png", liveUrl: "https://westnahira-cellularz.vercel.app/" },
   { title: "Ceylon Journeys", category: "Travel & Hospitality", description: "An immersive travel platform featuring automated tour booking and bespoke itinerary planning.", gradient: "from-orange-500 to-amber-400", image: "/portfolio/ceylonjourneys.png", liveUrl: "https://ceylon-journies.vercel.app/" },
   { title: "KadeMart Superstore", category: "Hyper-local E-commerce", description: "A high-performance grocery delivery platform with real-time inventory and integrated logistics.", gradient: "from-green-500 to-emerald-400", image: "/portfolio/kademart.png", slug: "kademart", liveUrl: "https://kade-mart-web.vercel.app/" },
-  { title: "Ceylon Heritage Villas", category: "Luxury Hospitality", description: "Bespoke booking platform for a collection of boutique villas in Galle.", gradient: "from-blue-500 to-cyan-400", image: "/portfolio/villa.png", liveUrl: "https://heritagevillas.novaweb.io" },
   { title: "Maison Aurelia Luxury Gems", category: "High-End E-commerce", description: "A premium digital boutique for rare gemstones and handcrafted jewelry, featuring elegant gold aesthetics and world-class luxury UX.", gradient: "from-amber-200 to-yellow-600", image: "/portfolio/aurelia.png", liveUrl: "https://aurelia-maison.vercel.app/" },
 ];
 
