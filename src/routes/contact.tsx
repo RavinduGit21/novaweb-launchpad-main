@@ -16,13 +16,36 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    (e.target as HTMLFormElement).reset();
+    setIsSending(true);
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "80994b9c-b65b-47ca-adc9-13a5d8db87a1");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSent(true);
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error sending message. Please check your connection.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -62,9 +85,10 @@ function ContactPage() {
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03]"
+                  disabled={isSending}
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {sent ? <><Check className="h-4 w-4" /> Sent!</> : <>Send Message <Send className="h-4 w-4" /></>}
+                  {isSending ? "Sending..." : sent ? <><Check className="h-4 w-4" /> Sent!</> : <>Send Message <Send className="h-4 w-4" /></>}
                 </button>
                 <a
                   href="https://wa.me/94718850885"
