@@ -678,7 +678,14 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
 
       <div className="relative flex-1 overflow-hidden">
         <div className="absolute inset-0 leading-[0]">
-          <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            loading="lazy"
+            width="600"
+            height="400"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+          />
         </div>
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 backdrop-blur-md bg-black/40 transition-opacity duration-500 pointer-events-none" />
         <div
@@ -745,7 +752,15 @@ function BrowserFrame({ src, label, style }: { src: string; label: string; style
         </div>
       </div>
       {/* Screenshot */}
-      <img src={src} alt={label} className="w-full h-full object-cover object-top" />
+      <img 
+        src={src} 
+        alt={label} 
+        loading="eager" 
+        fetchPriority="high"
+        width="800"
+        height="600"
+        className="w-full h-full object-cover object-top" 
+      />
     </div>
   );
 }

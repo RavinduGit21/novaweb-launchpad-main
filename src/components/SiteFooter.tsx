@@ -37,14 +37,15 @@ export function SiteFooter() {
             <h4 className="text-sm font-semibold">Follow</h4>
             <div className="mt-4 flex gap-3">
               {[
-                { Icon: Twitter, href: "#" },
-                { Icon: Linkedin, href: "#" },
-                { Icon: Github, href: "#" },
-                { Icon: Instagram, href: "#" },
-              ].map(({ Icon, href }, i) => (
+                { Icon: Twitter, href: "#", name: "Twitter" },
+                { Icon: Linkedin, href: "#", name: "LinkedIn" },
+                { Icon: Github, href: "#", name: "GitHub" },
+                { Icon: Instagram, href: "#", name: "Instagram" },
+              ].map(({ Icon, href, name }, i) => (
                 <a
                   key={i}
                   href={href}
+                  aria-label={name}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg glass transition-transform hover:scale-110 hover:text-accent"
                 >
                   <Icon className="h-4 w-4" />
