@@ -5,6 +5,9 @@ export function Logo({ className = "h-8 w-auto" }: { className?: string }) {
     <img
       src={logoSrc}
       alt="Novaweb logo"
+      width="180"
+      height="48"
+      fetchPriority="high"
       className={`${className} object-contain select-none`}
       draggable={false}
     />

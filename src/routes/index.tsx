@@ -756,7 +756,6 @@ function BrowserFrame({ src, label, style }: { src: string; label: string; style
         src={src} 
         alt={label} 
         loading="eager" 
-        fetchPriority="high"
         width="800"
         height="600"
         className="w-full h-full object-cover object-top" 
