@@ -18,8 +18,8 @@ import { CtaBand } from "@/components/CtaBand";
 export const Route = createFileRoute("/services/whatsapp")({
   head: () => ({
     meta: [
-      { title: "WhatsApp Automation Services — Novaweb" },
-      { name: "description", content: "Scale your business with intelligent WhatsApp bots and automated customer engagement." },
+      { title: "WhatsApp Automation Services in Sri Lanka | NovaWeb" },
+      { name: "description", content: "Scale your Sri Lankan business with intelligent WhatsApp bots and automated customer engagement. Official WhatsApp API solutions." },
     ],
   }),
   component: WhatsAppServicePage,

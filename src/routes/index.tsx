@@ -11,10 +11,10 @@ import { SERVICES, FEATURES, PROJECTS, PRICING } from "@/data/site";
 export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
-      { title: "Novaweb — Premium Web Engineering Studio" },
-      { name: "description", content: "We engineer high-performance websites, e-commerce stores, and automation solutions that turn visitors into loyal customers." },
-      { property: "og:title", content: "Novaweb — Premium Web Engineering Studio" },
-      { property: "og:description", content: "We engineer high-performance websites, e-commerce stores, and automation solutions that turn visitors into loyal customers." },
+      { title: "NovaWeb | Top Web Design & Software Studio in Sri Lanka" },
+      { name: "description", content: "Expert web development, e-commerce, and software automation in Sri Lanka. We build high-performance digital solutions that drive revenue and growth." },
+      { property: "og:title", content: "NovaWeb | Top Web Design & Software Studio in Sri Lanka" },
+      { property: "og:description", content: "Expert web development, e-commerce, and software automation in Sri Lanka. We build high-performance digital solutions that drive revenue and growth." },
     ],
   }),
   component: HomePage,
