@@ -32,15 +32,21 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-      { title: "Novaweb — Web Development & Automation" },
-      { name: "description", content: "Modern websites, e-commerce, and automation solutions to grow your business." },
-      { name: "author", content: "Novaweb" },
-      { property: "og:title", content: "Novaweb — Web Development & Automation" },
-      { property: "og:description", content: "Modern websites, e-commerce, and automation solutions to grow your business." },
+      { title: "NovaWeb | Top Web Design & Software Company in Sri Lanka" },
+      { name: "description", content: "Leading web development, e-commerce, and software automation company in Sri Lanka. We build modern, fast, and scalable digital solutions to grow your business." },
+      { name: "keywords", content: "Web Development Sri Lanka, Software Company Sri Lanka, Web Design Colombo, E-commerce development Sri Lanka, NovaWeb, SEO Sri Lanka" },
+      { name: "author", content: "NovaWeb" },
+      { property: "og:title", content: "NovaWeb | Top Web Design & Software Company in Sri Lanka" },
+      { property: "og:description", content: "Leading web development, e-commerce, and software automation company in Sri Lanka. We build modern, fast, and scalable digital solutions to grow your business." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://novaweb.lk/" },
+      { property: "og:site_name", content: "NovaWeb Sri Lanka" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "NovaWeb | Web Design & Software Sri Lanka" },
+      { name: "twitter:description", content: "Modern websites, e-commerce, and automation solutions to grow your business in Sri Lanka." },
     ],
     links: [
+      { rel: "canonical", href: "https://novaweb.lk/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -57,10 +63,34 @@ export const Route = createRootRoute({
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NovaWeb",
+    "url": "https://novaweb.lk/",
+    "logo": "https://novaweb.lk/logo.png",
+    "description": "Leading web development, e-commerce, and software automation company in Sri Lanka.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+94-71-885-0885",
+      "contactType": "customer service",
+      "areaServed": "LK",
+      "availableLanguage": ["English", "Sinhala"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "LK"
+    }
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         {children}
