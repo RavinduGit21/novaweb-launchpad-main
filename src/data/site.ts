@@ -91,7 +91,7 @@ export const PRICING: PricingTier[] = [
     price: "Rs. 15,000",
     description: "Perfect for small businesses and personal brands just getting started online.",
     features: [
-      "Up to 5 pages",
+      "Up to 3 pages",
       "Mobile responsive design",
       "Contact form integration",
       "Basic SEO setup",
