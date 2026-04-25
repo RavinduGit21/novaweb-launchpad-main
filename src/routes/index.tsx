@@ -557,7 +557,7 @@ function WhatsAppSimulator() {
             We build intelligent conversational bots that take orders, book appointments, and capture leads while you sleep. Your customers get instant replies in seconds without human intervention.
           </p>
           <div className="pt-6">
-            <a href="https://wa.me/94718850885?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
+            <a href="https://wa.me/94714516364?text=Hi!%20I%20want%20to%20see%20a%20live%20demo%20of%20the%20automation%20bot" target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-[1.02] transition-all">
               <MessageCircle className="w-5 h-5" /> Test The Live Demo
             </a>
           </div>
@@ -678,13 +678,13 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
 
       <div className="relative flex-1 overflow-hidden">
         <div className="absolute inset-0 leading-[0]">
-          <img 
-            src={project.image} 
-            alt={project.title} 
+          <img
+            src={project.image}
+            alt={project.title}
             loading="lazy"
             width="600"
             height="400"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 backdrop-blur-md bg-black/40 transition-opacity duration-500 pointer-events-none" />
@@ -752,13 +752,13 @@ function BrowserFrame({ src, label, style }: { src: string; label: string; style
         </div>
       </div>
       {/* Screenshot */}
-      <img 
-        src={src} 
-        alt={label} 
-        loading="eager" 
+      <img
+        src={src}
+        alt={label}
+        loading="eager"
         width="800"
         height="600"
-        className="w-full h-full object-cover object-top" 
+        className="w-full h-full object-cover object-top"
       />
     </div>
   );
