@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Twitter, Instagram, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Instagram, Mail, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function SiteFooter() {
@@ -38,6 +38,7 @@ export function SiteFooter() {
             <div className="mt-4 flex gap-3">
               {[
                 { Icon: Twitter, href: "#", name: "Twitter" },
+                { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61562928632236", name: "Facebook" },
                 { Icon: Linkedin, href: "#", name: "LinkedIn" },
                 { Icon: Github, href: "#", name: "GitHub" },
                 { Icon: Instagram, href: "#", name: "Instagram" },
@@ -45,6 +46,8 @@ export function SiteFooter() {
                 <a
                   key={i}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={name}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg glass transition-transform hover:scale-110 hover:text-accent"
                 >
@@ -53,6 +56,7 @@ export function SiteFooter() {
               ))}
             </div>
           </div>
+
         </div>
 
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/5 pt-6 text-xs text-muted-foreground">
